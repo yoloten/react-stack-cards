@@ -1,27 +1,31 @@
 {
   "name": "examples",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "parcel ./src/index.html --open",
-    
-    "deploy": "gh-pages -d dist"
-  },
-  "author": "Rustam Sahatov",
-  "license": "ISC",
-  "homepage": "https://rustam1998.github.io/react-stack-cards/",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "react-scripts": "3.0.1"
   },
-  "devDependencies": {
-    "@babel/core": "^7.4.5",
-    "@babel/plugin-proposal-class-properties": "^7.4.4",
-    "@babel/preset-react": "^7.0.0",
-    "babel-preset-env": "^1.7.0",
-    "gh-pages": "^2.0.1",
-    "parcel-bundler": "^1.12.3"
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
