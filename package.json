@@ -1,0 +1,31 @@
+{
+  "name": "react-animations-library",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "tslint -c tslint.json --project tsconfig.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rustam Sahatov",
+  "license": "ISC",
+  "dependencies": {
+    "@types/styled-components": "^4.1.16",
+    "inspector": "^0.5.0",
+    "popmotion": "^8.6.10",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-pose": "^4.0.8",
+    "styled-components": "^4.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^16.8.19",
+    "@types/react-dom": "^16.8.4",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "tslint": "^5.17.0",
+    "tslint-react": "^4.0.0",
+    "typescript": "^3.5.1"
+  }
+}
