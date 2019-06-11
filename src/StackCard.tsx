@@ -1,6 +1,7 @@
 import * as React from "react"
 import posed from "react-pose"
 import styled from "styled-components"
+import objectSwitch from "./objectSwitch"
 
 namespace Stack {
     export interface Props {
@@ -14,20 +15,6 @@ namespace Stack {
         children: React.ReactNode
         [propName: string]: any
     }
-    export type value = number | string
-    export interface Target {
-        [propName: string]: any
-    }
-}
-
-function objectSwitch(
-  value: Stack.value | string,
-  target: Stack.Target,
-  exec = false,
-) {
-  return target[value]
-        ? ( exec ? target[value]() : target[value] )
-        : ( target.default ? ( exec ? target.default() : target.default ) : null )
 }
 
 const Box = posed.div({
@@ -171,7 +158,6 @@ const StyledBox = styled(Box)`
   position: relative;
   height: ${({ height }: Stack.Props): string => height + "px"};
   width: ${({ width }: Stack.Props): string => width + "px"};
-  margin: 10rem;
 `
 const StyledDecoBox = styled(Box)`
   background: ${({ order, color }: Stack.Props): string => order === 0 ? "transparent" : color};

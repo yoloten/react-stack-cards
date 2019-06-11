@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ReactDom from 'react-dom'
 import StackCard from '../../lib/StackCard'
+import TinderLikeCard from '../../lib/TinderLikeCard'
 
 class App extends Component {
     render() {
@@ -15,17 +16,8 @@ class App extends Component {
       const arr = [first, second, third, fourth];
         return (
             <div>
-                <StackCard
-                    duration={500}
-                    direction={'topLeft'}
-                    color={"#4286f4"}
-                    onClick={this.onLol}
-                    width={250}
-                    images={arr}
-                    height={200}
-                >
-                    <h1>Hello</h1>
-                </StackCard>
+                
+                <TinderLikeCard/>
             </div>
         )
     }
