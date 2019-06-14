@@ -2,7 +2,6 @@ import * as React from "react"
 import posed, { PoseGroup } from "react-pose"
 import styled from "styled-components"
 import objectSwitch from "./objectSwitch"
-import List from "./List"
 
 namespace TinderLike {
     export interface Props {
@@ -24,16 +23,14 @@ namespace TinderLike {
 
 const Li = posed.li({
     init: {
-        transition: { duration: 100 },
-        y: 0
-        scale: 1
+        transition: { duration: 400 },
+        y: 0,
+        scale: 1,
     },
     out: {
-        x: 100
+        x: 100,
+        transition: { duration: 400 },
     },
-    middle: {
-        y: 100
-    }
 })
 
 const StyledUl = styled.ul`
