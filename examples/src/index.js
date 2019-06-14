@@ -14,10 +14,21 @@ class App extends Component {
       const fourth =
         "https://images.pexels.com/photos/697243/pexels-photo-697243.jpeg?cs=srgb&dl=backlit-bright-dawn-697243.jpg&fm=jpg";
       const arr = [first, second, third, fourth];
+      const colors =  [
+        "#c9c4bf",
+        "#252526",
+        "#2b0eed",
+        "#f95c5c",
+        "#5cf9e4",
+        "#4286f4",
+        "#ee42f4",
+        "#e2f442",
+        "#86f441",
+    ]
         return (
             <div>
                 
-                <TinderLikeCard/>
+                <TinderLikeCard content={colors}/>
             </div>
         )
     }
