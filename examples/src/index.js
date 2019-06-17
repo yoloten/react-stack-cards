@@ -24,6 +24,7 @@ class App extends Component {
         "#ee42f4",
         "#e2f442",
         "#86f441",
+        
     ]
         return (
             <div>

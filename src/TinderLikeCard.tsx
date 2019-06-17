@@ -18,19 +18,25 @@ namespace TinderLike {
     export interface State {
         list: any[]
         content: string[]
+        current: number
     }
 }
 
 const Li = posed.li({
     init: {
-        transition: { duration: 400 },
-        y: 0,
-        scale: 1,
-    },
-    out: {
-        x: 100,
-        transition: { duration: 400 },
-    },
+        opacity: 1,
+        x: 0,
+        y: 1,
+        rotate: 0,
+        transition: { duration: 250},
+      },
+      out: {
+        opacity: 0,
+        x: -25,
+        y: 800,
+        rotate: -225,
+        transition: { duration: 500},
+      },
 })
 
 const StyledUl = styled.ul`
@@ -57,6 +63,7 @@ class TinderLikeCard extends React.Component<TinderLike.Props, TinderLike.State>
     public state: TinderLike.State = {
         list: [],
         content: [],
+        current: 0,
     }
 
     public componentDidMount() {
@@ -78,26 +85,22 @@ class TinderLikeCard extends React.Component<TinderLike.Props, TinderLike.State>
     public click = () => {
         const newList = this.state.list
         const currentContent = this.state.content
-        if (newList.length <= 4) {
-            newList.push({
+        newList.push({
                 val: currentContent[0],
                 out: "",
                 in: "in",
             })
-        }
-        if (newList.length >= 5) {
-            newList.shift()
-        }
-        this.setState({ 
-            list: newList,
-        })
+    
+        this.setState({list: newList})
         this.setState({ content: currentContent.slice(1) })
-        this.state.list[0].out = "out"
-        this.state.list[2].in = ""
+        this.state.list[this.state.current].out = "out"
+        this.state.list[this.state.list.length - 2].in = ""
+        this.setState({current: this.state.current += 1 })
     }
 
     public render() {
         const { list } = this.state
+        // const t0 = performance.now()
         const newList = list.length !== 0 ? list.map((obj, key) => (
             <StyledLi
                 color={obj.val}
@@ -105,7 +108,10 @@ class TinderLikeCard extends React.Component<TinderLike.Props, TinderLike.State>
                 pose={obj.out}
             />
         )).reverse() : ""
-        console.log(list)
+        // const t1 = performance.now()
+        // console.log("Call to doSomething took " + (t1 - t0) / 1000 + " seconds. " + list.length)
+       
+        // console.log(list)
         return (
             <StyledUl>
                 {newList}
