@@ -1,9 +1,41 @@
 import React, { Component } from 'react'
 import ReactDom from 'react-dom'
+import Select from 'react-select'
+
 import StackCard from '../../lib/StackCard'
 import TinderLikeCard from '../../lib/TinderLikeCard'
 
+const options = [
+  { value: 'swipeRight', label: 'swipeRight' },
+  { value: 'swipeLeft', label: 'swipeLeft' },
+  { value: 'swipeRightRotate', label: 'swipeRightRotate' },
+  { value: 'swipeLeftRotate', label: 'swipeLeftRotate' },
+  { value: 'swipeDown', label: 'swipeDown' },
+  { value: 'swipeDownLeft', label: 'swipeDownLeft' },
+  { value: 'swipeDownRight', label: 'swipeDownRight' },
+  { value: 'swipeTop', label: 'swipeTop' },
+  { value: 'swipeTopLeft', label: 'swipeTopLeft' },
+  { value: 'swipeTopRight', label: 'swipeTopRight' },
+  { value: 'swipeFallDown', label: 'swipeFallDown' },
+  { value: 'swipeFallTop', label: 'swipeFallTop' },
+  { value: 'swipeThrowRight', label: 'swipeThrowRight' },
+  { value: 'swipeThrowLeft', label: 'swipeThrowLeft' },
+  { value: 'swipeThrowTop', label: 'swipeThrowTop' },
+  { value: 'swipeThrowDown', label: 'swipeThrowDown' },
+]
+
 class App extends Component {
+  constructor(){
+    super()
+    this.state = {
+      direction: ""
+    }
+  }
+  
+  onSelect(elem){
+    this.setState({direction: elem.value })
+  }
+  
     render() {
         const first =
         "https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?cs=srgb&dl=backlit-clouds-friends-853168.jpg&fm=jpg";
@@ -28,8 +60,22 @@ class App extends Component {
     ]
         return (
             <div>
-                
-                <TinderLikeCard content={colors}/>
+                <Select  
+                  value={this.state.direction}  
+                  onChange={this.onSelect.bind(this)} 
+                  options={options} 
+                />
+                <TinderLikeCard 
+                  colors={colors} 
+                  width="250" 
+                  height="200" 
+                  duration={700}
+                  direction={this.state.direction}
+                >
+                  {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(i => (
+                    <div key={i} >{i}</div>
+                  ))}
+                </TinderLikeCard>
             </div>
         )
     }

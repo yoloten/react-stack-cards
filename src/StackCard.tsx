@@ -164,7 +164,7 @@ const StyledDecoBox = styled(Box)`
   background-image: url(${({ images}: Stack.Props) => images});
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  position: absolute;
+  position: absolute; 
   top: 0;
   left: 0;
   width: 100%;
