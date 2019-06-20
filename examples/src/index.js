@@ -22,6 +22,10 @@ const options = [
   { value: 'swipeThrowLeft', label: 'swipeThrowLeft' },
   { value: 'swipeThrowTop', label: 'swipeThrowTop' },
   { value: 'swipeThrowDown', label: 'swipeThrowDown' },
+  { value: 'swipeCornerTopRight', label: 'swipeCornerTopRight' },
+  { value: 'swipeCornerTopLeft', label: 'swipeCornerTopLeft' },
+  { value: 'swipeCornerDownLeft', label: 'swipeCornerDownLeft' },
+  { value: 'swipeCornerDownRight', label: 'swipeCornerDownRight' },
 ]
 
 class App extends Component {
@@ -70,7 +74,7 @@ class App extends Component {
                   width="250" 
                   height="200" 
                   duration={700}
-                  direction={this.state.direction}
+                  direction="swipeCornerDownRight"
                 >
                   {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(i => (
                     <div key={i} >{i}</div>

@@ -67,6 +67,10 @@ const Li = posed.li({
                 swipeThrowRight: -50,
                 swipeThrowLeft: -50,
                 swipeThrowDown: 300,
+                swipeCornerTopRight: -150,
+                swipeCornerTopLeft: -150,
+                swipeCornerDownLeft: 150,
+                swipeCornerDownRight: 150,
             })
         },
         transition: ({ duration }: TinderLike.Props) => ({ 
@@ -91,6 +95,10 @@ const Li = posed.li({
                 swipeFallTop: 0,
                 swipeThrowRight: 200,
                 swipeThrowLeft: -200,
+                swipeCornerTopRight: 300,
+                swipeCornerTopLeft: -300,
+                swipeCornerDownLeft: -300,
+                swipeCornerDownRight: 300,
             })
         },
         rotate: ({ direction }: TinderLike.Props): number => {
@@ -107,6 +115,10 @@ const Li = posed.li({
                 swipeTopRight: 20,
                 swipeFallDown: 0,
                 swipeFallTop: 0,
+                swipeCornerTopRight: 20,
+                swipeCornerTopLeft: -20,
+                swipeCornerDownLeft: -20,
+                swipeCornerDownRight: 20,
             })
         },
         opacity: 0,
@@ -130,21 +142,54 @@ const Li = posed.li({
         opacity: 1,
         x: 0,
         y: 60,
-        transition: ({ duration }: TinderLike.Props) => ({duration}),
+        transition: ({ direction }: TinderLike.Props): number => {
+            const cornersTransition = ({ duration }: TinderLike.Props) => ({
+                duration,
+                type: "spring",
+                stiffness: 500,
+                delay: 150,
+            })
+            return objectSwitch(direction, {
+                swipeCornerTopRight: cornersTransition,
+                swipeCornerTopLeft: cornersTransition,
+                swipeCornerDownLeft: cornersTransition,
+                swipeCornerDownRight: cornersTransition,
+                default: ({ duration }: TinderLike.Props) => ({duration}),
+            })
+        },
         scale: 1,
     },
     secondMiddle: {
         opacity: 1,
         x: 0,
         y: 40,
-        transition: ({ duration }: TinderLike.Props) => ({duration}),
+        transition: ({ direction }: TinderLike.Props): number => {
+            const cornersTransition = ({ duration }: TinderLike.Props) => ({
+                duration,
+                type: "spring",
+                stiffness: 500,
+                delay: 150,
+            })
+            return objectSwitch(direction, {
+                swipeCornerTopRight: cornersTransition,
+                swipeCornerTopLeft: cornersTransition,
+                swipeCornerDownLeft: cornersTransition,
+                swipeCornerDownRight: cornersTransition,
+                default: ({ duration }: TinderLike.Props) => ({duration}),
+            })
+        },
         scale: 0.95,
     },
     in: {
         opacity: 1,
         x: 0,
         y: 20,
-        transition: ({ duration }: TinderLike.Props) => ({duration}),
+        transition: ({ duration }: TinderLike.Props) => ({
+            duration,
+            type: "spring",
+            stiffness: 400,
+            delay: 150,
+        }),
         scale: 0.90,
     },
 })
