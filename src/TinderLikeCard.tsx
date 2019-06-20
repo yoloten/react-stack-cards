@@ -3,38 +3,69 @@ import posed, { PoseGroup } from "react-pose"
 import styled, { keyframes } from "styled-components"
 import objectSwitch from "./objectSwitch"
 
+namespace LiNamespace {
+    export const bgColor = ({ background, bgStatus }: TinderLike.Props) => bgStatus === "colors" ? background : ""
+    export const clipPath = ({ pose, direction }: TinderLike.Props) => {
+        return pose[0] === "out" && direction === "swipeFallTop" || direction === "swipeFallDown"
+            ? "polygon(0 0, 100% 0%, 98% 100%, 2% 100%)" 
+            : ""
+    }
+    export const transform = ({ direction }: TinderLike.Props) => direction === "swipeFallTop" 
+        ? "top center" 
+        : "bottom center"
+    export const anim = ({ pose }: TinderLike.Props) => pose[0] === "out" ? fadeOut : ""
+    export const liHeight = ({ height }: TinderLike.Props): string => height + "px"
+    export const liWidth = ({ width }: TinderLike.Props): string => width + "px"
+    export const bgImage = ({ background }: TinderLike.Props) => background
+}
+
 namespace TinderLike {
     export interface Props {
-        duration: number
-        direction: string
-        colors: string[]
-        images: string[]
-        // onClick: () => void
-        width: string
-        height: string
-        className: string
         children: React.ReactNode
         [propName: string]: any
+        className: string
+        direction: string
+        duration: number
+        colors: string[]
+        images: string[]
+        height: string
+        width: string
     }
     export interface State {
-        list: any[]
+        stateOfContent: string
         content: string[]
         current: number
-        stateOfContent: string
+        list: any[]
     }
 }
 
 const cornersTransition = ({ duration }: TinderLike.Props) => ({
-    duration,
-    type: "spring",
     stiffness: 500,
+    type: "spring",
     delay: 150,
+    duration,
 })
+
+const middleTransition = ({ direction }: TinderLike.Props): number => {
+    return objectSwitch(direction, {
+        default: ({ duration }: TinderLike.Props) => ({duration}),
+        swipeCornerDownRight: cornersTransition,
+        swipeCornerTopRight: cornersTransition,
+        swipeCornerDownLeft: cornersTransition,
+        swipeCornerTopLeft: cornersTransition,
+    })
+}
 
 const Li = posed.li({
     init: {
-        opacity: 1,
-        x: 0,
+        transition: ({ duration }: TinderLike.Props) => ({duration}),
+        scale: ({ order }: TinderLike.Props): number => {
+            return objectSwitch(order, {
+                0: 1,
+                1: 0.95,
+                2: 0.9,
+            })
+        },
         y: ({ order }: TinderLike.Props): number => {
             return objectSwitch(order, {
                 0: 60,
@@ -44,85 +75,54 @@ const Li = posed.li({
                 4: 10,
             })
         },
-        scale: ({ order }: TinderLike.Props): number => {
-            return objectSwitch(order, {
-                0: 1,
-                1: 0.95,
-                2: 0.9,
-            })
-        },
-        rotate: 0,
-        transition: ({ duration }: TinderLike.Props) => ({duration}),
+        opacity: 1,
+        rotate: 0, 
+        x: 0,
     },
     out: {
-        y: ({ direction }: TinderLike.Props): number => {
-            return objectSwitch(direction, {
-                swipeRightRotate: 80,
-                swipeLeftRotate: 80,
-                swipeDown: 200,
-                swipeDownLeft: 300,
-                swipeDownRight: 300,
-                swipeRight: 0,
-                swipeLeft: 0,
-                swipeTop: -270,
-                swipeTopLeft: -270,
-                swipeTopRight: -270,
-                swipeFallDown: 0,
-                swipeFallTop: 0,
-                swipeThrowTop: -300,
-                swipeThrowRight: -50,
-                swipeThrowLeft: -50,
-                swipeThrowDown: 300,
-                swipeCornerTopRight: -150,
-                swipeCornerTopLeft: -150,
-                swipeCornerDownLeft: 150,
-                swipeCornerDownRight: 150,
-            })
-        },
         transition: ({ duration }: TinderLike.Props) => ({ duration }),
         x: ({ direction }: TinderLike.Props): number => {
             return objectSwitch(direction, {
+                swipeCornerDownLeft: -300,
+                swipeCornerDownRight: 300,
+                swipeCornerTopRight: 300,
+                swipeCornerTopLeft: -300,
                 swipeRightRotate: 200,
                 swipeLeftRotate: -200,
-                swipeDown: 0,
+                swipeThrowRight: 200,
+                swipeThrowLeft: -200,
                 swipeDownLeft: -70,
                 swipeDownRight: 70,
-                swipeRight: 200,
-                swipeLeft: -200,
-                swipeTop: 0,
                 swipeTopLeft: -50,
                 swipeTopRight: 50,
                 swipeFallDown: 0,
+                swipeRight: 200,
+                swipeLeft: -200,
                 swipeFallTop: 0,
-                swipeThrowRight: 200,
-                swipeThrowLeft: -200,
-                swipeCornerTopRight: 300,
-                swipeCornerTopLeft: -300,
-                swipeCornerDownLeft: -300,
-                swipeCornerDownRight: 300,
+                swipeDown: 0,
+                swipeTop: 0,
             })
         },
         rotate: ({ direction }: TinderLike.Props): number => {
             return objectSwitch(direction, {
-                swipeRightRotate: 15,
-                swipeLeftRotate: -15,
-                swipeDown: 0,
-                swipeRight: 2,
-                swipeLeft: -2,
-                swipeDownLeft: 15,
-                swipeDownRight: -15,
-                swipeTop: 0,
-                swipeTopLeft: -20,
-                swipeTopRight: 20,
-                swipeFallDown: 0,
-                swipeFallTop: 0,
-                swipeCornerTopRight: 20,
-                swipeCornerTopLeft: -20,
                 swipeCornerDownLeft: -20,
                 swipeCornerDownRight: 20,
+                swipeCornerTopRight: 20,
+                swipeCornerTopLeft: -20,
+                swipeRightRotate: 15,
+                swipeLeftRotate: -15,
+                swipeDownRight: -15,
+                swipeTopLeft: -20,
+                swipeTopRight: 20,
+                swipeDownLeft: 15,
+                swipeFallDown: 0,
+                swipeFallTop: 0,
+                swipeRight: 2,
+                swipeLeft: -2,
+                swipeDown: 0,
+                swipeTop: 0,
             })
         },
-        opacity: 0,
         rotateX: ({ direction }: TinderLike.Props): number => {
             return objectSwitch(direction, {
                 swipeFallDown: 100,
@@ -131,62 +131,65 @@ const Li = posed.li({
         },
         scale: ({ direction }: TinderLike.Props): number => {
             return objectSwitch(direction, {
-                swipeThrowTop: 0.001,
                 swipeThrowRight: 0.001,
                 swipeThrowLeft: 0.001,
                 swipeThrowDown: 0.001,
+                swipeThrowTop: 0.001,
             })
         },
-        
+        y: ({ direction }: TinderLike.Props): number => {
+            return objectSwitch(direction, {
+                swipeCornerDownRight: 150,
+                swipeCornerTopRight: -150,
+                swipeCornerTopLeft: -150,
+                swipeCornerDownLeft: 150,
+                swipeRightRotate: 80,
+                swipeThrowRight: -50,
+                swipeLeftRotate: 80,
+                swipeDownRight: 300,
+                swipeTopRight: -270,
+                swipeThrowTop: -300,
+                swipeThrowLeft: -50,
+                swipeThrowDown: 300,
+                swipeDownLeft: 300,
+                swipeTopLeft: -270,
+                swipeFallDown: 0,
+                swipeFallTop: 0,
+                swipeTop: -270,
+                swipeDown: 200,
+                swipeRight: 0,
+                swipeLeft: 0,
+            })
+        },
+        opacity: 0,
     },
     middle: {
+        transition: middleTransition,
         opacity: 1,
-        x: 0,
-        y: 60,
-        transition: ({ direction }: TinderLike.Props): number => {
-            return objectSwitch(direction, {
-                swipeCornerTopRight: cornersTransition,
-                swipeCornerTopLeft: cornersTransition,
-                swipeCornerDownLeft: cornersTransition,
-                swipeCornerDownRight: cornersTransition,
-                default: ({ duration }: TinderLike.Props) => ({duration}),
-            })
-        },
         scale: 1,
+        y: 60,
+        x: 0,
     },
     secondMiddle: {
-        opacity: 1,
-        x: 0,
-        y: 40,
-        transition: ({ direction }: TinderLike.Props): number => {
-            return objectSwitch(direction, {
-                swipeCornerTopRight: cornersTransition,
-                swipeCornerTopLeft: cornersTransition,
-                swipeCornerDownLeft: cornersTransition,
-                swipeCornerDownRight: cornersTransition,
-                default: ({ duration }: TinderLike.Props) => ({duration}),
-            })
-        },
+        transition: middleTransition,
         scale: 0.95,
+        opacity: 1,
+        y: 40,
+        x: 0,
     },
     in: {
-        opacity: 1,
-        x: 0,
-        y: 20,
-        transition: ({ duration }: TinderLike.Props) => ({
-            duration,
-            type: "spring",
-            stiffness: 400,
-            delay: 150,
-        }),
+        transition: cornersTransition,
         scale: 0.90,
+        opacity: 1,
+        y: 20,
+        x: 0,
     },
 })
 
 const StyledUl = styled.ul`
   position: relative;
-  height: ${({ height }: TinderLike.Props): string => height + "px"};
-  width: ${({ width }: TinderLike.Props): string => width + "px"};
+  height: ${LiNamespace.liHeight};
+  width: ${LiNamespace.liWidth};
 `
 const fadeOut = keyframes`
     0% {
@@ -199,27 +202,22 @@ const fadeOut = keyframes`
         opacity: 0;
     }
 `
+
 const StyledLi = styled(Li)`
   z-index: -1;
-  height: ${({ height }: TinderLike.Props): string => height + "px"};
-  width: ${({ width }: TinderLike.Props): string => width + "px"};
+  height: ${LiNamespace.liHeight};
+  width: ${LiNamespace.liWidth};
   position: absolute;
   top: 0;
   left: 0;
   list-style: none;
-  background: ${({ background, bgStatus }: TinderLike.Props) => bgStatus === "colors" ? background : ""};
-  background-image: url(${({ background }: TinderLike.Props) => background});
+  background: ${LiNamespace.bgColor};
+  background-image: url(${LiNamespace.bgImage});
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  transform-origin: ${({ direction }: TinderLike.Props) => direction === "swipeFallTop" 
-  ? "top center" 
-  : "bottom center"};
-  clip-path: ${({ pose, direction }: TinderLike.Props) => {
-    return pose[0] === "out" && direction === "swipeFallTop" || direction === "swipeFallDown"
-    ? "polygon(0 0, 100% 0%, 98% 100%, 2% 100%)" 
-    : ""
-  }};
-  animation: 1s ${({ pose }: TinderLike.Props) => pose[0] === "out" ? fadeOut : ""} ease-out;
+  transform-origin: ${LiNamespace.transform};
+  clip-path: ${LiNamespace.clipPath};
+  animation: 1s ${LiNamespace.anim} ease-out;
 `
 const Button = styled.button`
   margin-top: 20rem
@@ -256,12 +254,13 @@ class TinderLikeCard extends React.Component<TinderLike.Props, TinderLike.State>
                 })
             }
             const newContent = props.slice(3)
-            this.setState({ list: newList })
-            this.setState({ content: newContent })
+            this.setState({ list: newList, content: newContent })
         }
     }
 
     public click = () => {
+        const { current } = this.state 
+        const { list } = this.state 
         const newList = this.state.list
         const currentContent = this.state.content
         newList.push({
@@ -270,22 +269,24 @@ class TinderLikeCard extends React.Component<TinderLike.Props, TinderLike.State>
             in: "in",
             middle: "",
         })
-        newList[this.state.current].out = "out"
-        if (newList[this.state.current].out === "out") {
-            newList[this.state.current].middle = ""
-            newList[this.state.current + 1].middle = "middle"
-            newList[this.state.current + 2].middle = "secondMiddle"
+        newList[current].out = "out"
+        if (newList[current].out === "out") {
+            newList[current].middle = ""
+            newList[current + 1].middle = "middle"
+            newList[current + 2].middle = "secondMiddle"
         }
-        newList[this.state.list.length - 2].in = ""
-        this.setState({ list: newList })
-        this.setState({ content: currentContent.slice(1) })
-        this.setState({ current: this.state.current += 1 })
+        newList[list.length - 2].in = ""
+        this.setState({ 
+            list: newList, 
+            content: currentContent.slice(1),
+            current: this.state.current += 1,  
+        })
     }
 
     public render() {
         const { list } = this.state
         const props = this.props
-        const newList = list.length !== 0 ? list.map((obj, key) => (
+        const newList = !list.length ? "" : list.map((obj, key) => (
             <StyledLi
                 bgStatus={this.state.stateOfContent}
                 background={obj.val}
@@ -298,7 +299,7 @@ class TinderLikeCard extends React.Component<TinderLike.Props, TinderLike.State>
                 pose={[obj.out, obj.out2, obj.middle, obj.in]}
                 order={key}
             >{Array.isArray(props.children) ? props.children[key] : props.children}</StyledLi>
-        )).reverse() : ""
+        )).reverse()
         return (
             <StyledUl>
                 {newList}

@@ -4,6 +4,7 @@ import Select from 'react-select'
 
 import StackCard from '../../lib/StackCard'
 import TinderLikeCard from '../../lib/TinderLikeCard'
+import ToggleCard from '../../lib/ToggleCard'
 
 const options = [
   { value: 'swipeRight', label: 'swipeRight' },
@@ -60,8 +61,7 @@ class App extends Component {
         "#ee42f4",
         "#e2f442",
         "#86f441",
-        
-    ]
+      ]
         return (
             <div>
                 <Select  
@@ -79,7 +79,7 @@ class App extends Component {
                   {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(i => (
                     <div key={i} >{i}</div>
                   ))}
-                </TinderLikeCard>
+</TinderLikeCard>
             </div>
         )
     }
