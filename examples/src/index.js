@@ -74,7 +74,7 @@ class App extends Component {
                   width="250" 
                   height="200" 
                   duration={700}
-                  direction="swipeCornerDownRight"
+                  direction={this.state.direction}
                 >
                   {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(i => (
                     <div key={i} >{i}</div>

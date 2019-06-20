@@ -24,6 +24,13 @@ namespace TinderLike {
     }
 }
 
+const cornersTransition = ({ duration }: TinderLike.Props) => ({
+    duration,
+    type: "spring",
+    stiffness: 500,
+    delay: 150,
+})
+
 const Li = posed.li({
     init: {
         opacity: 1,
@@ -48,7 +55,6 @@ const Li = posed.li({
         transition: ({ duration }: TinderLike.Props) => ({duration}),
     },
     out: {
-        
         y: ({ direction }: TinderLike.Props): number => {
             return objectSwitch(direction, {
                 swipeRightRotate: 80,
@@ -73,12 +79,7 @@ const Li = posed.li({
                 swipeCornerDownRight: 150,
             })
         },
-        transition: ({ duration }: TinderLike.Props) => ({ 
-            duration, 
-            delay: 100,
-            type: "spring",
-            stiffness: 100,
-        }),
+        transition: ({ duration }: TinderLike.Props) => ({ duration }),
         x: ({ direction }: TinderLike.Props): number => {
             return objectSwitch(direction, {
                 swipeRightRotate: 200,
@@ -143,12 +144,6 @@ const Li = posed.li({
         x: 0,
         y: 60,
         transition: ({ direction }: TinderLike.Props): number => {
-            const cornersTransition = ({ duration }: TinderLike.Props) => ({
-                duration,
-                type: "spring",
-                stiffness: 500,
-                delay: 150,
-            })
             return objectSwitch(direction, {
                 swipeCornerTopRight: cornersTransition,
                 swipeCornerTopLeft: cornersTransition,
@@ -164,12 +159,6 @@ const Li = posed.li({
         x: 0,
         y: 40,
         transition: ({ direction }: TinderLike.Props): number => {
-            const cornersTransition = ({ duration }: TinderLike.Props) => ({
-                duration,
-                type: "spring",
-                stiffness: 500,
-                delay: 150,
-            })
             return objectSwitch(direction, {
                 swipeCornerTopRight: cornersTransition,
                 swipeCornerTopLeft: cornersTransition,
@@ -206,14 +195,10 @@ const fadeOut = keyframes`
     25% {
         opacity: 0.8;
     }
-    50% {
-        opacity: 0;
-    }
     100% {
         opacity: 0;
     }
 `
-
 const StyledLi = styled(Li)`
   z-index: -1;
   height: ${({ height }: TinderLike.Props): string => height + "px"};
@@ -236,7 +221,6 @@ const StyledLi = styled(Li)`
   }};
   animation: 1s ${({ pose }: TinderLike.Props) => pose[0] === "out" ? fadeOut : ""} ease-out;
 `
-
 const Button = styled.button`
   margin-top: 20rem
 `
@@ -247,7 +231,7 @@ class TinderLikeCard extends React.Component<TinderLike.Props, TinderLike.State>
         list: [],
         content: [],
         current: 0,
-        stateOfContent: ""
+        stateOfContent: "",
     }
 
     public componentDidMount() {
@@ -286,14 +270,12 @@ class TinderLikeCard extends React.Component<TinderLike.Props, TinderLike.State>
             in: "in",
             middle: "",
         })
-
         newList[this.state.current].out = "out"
         if (newList[this.state.current].out === "out") {
             newList[this.state.current].middle = ""
             newList[this.state.current + 1].middle = "middle"
             newList[this.state.current + 2].middle = "secondMiddle"
         }
-
         newList[this.state.list.length - 2].in = ""
         this.setState({ list: newList })
         this.setState({ content: currentContent.slice(1) })
@@ -303,7 +285,6 @@ class TinderLikeCard extends React.Component<TinderLike.Props, TinderLike.State>
     public render() {
         const { list } = this.state
         const props = this.props
-        // const t0 = performance.now()
         const newList = list.length !== 0 ? list.map((obj, key) => (
             <StyledLi
                 bgStatus={this.state.stateOfContent}
@@ -318,9 +299,6 @@ class TinderLikeCard extends React.Component<TinderLike.Props, TinderLike.State>
                 order={key}
             >{Array.isArray(props.children) ? props.children[key] : props.children}</StyledLi>
         )).reverse() : ""
-        // const t1 = performance.now()
-        // console.log("Call to doSomething took " + (t1 - t0) / 1000 + " seconds. " + list.length)
-        console.log(list)
         return (
             <StyledUl>
                 {newList}
