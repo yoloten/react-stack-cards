@@ -62,24 +62,17 @@ class App extends Component {
         "#e2f442",
         "#86f441",
       ]
+      // directions: openBottomLeft, openBottomRight, openTopRight, openTopLeft
+      // fanOut, randmRotation, sideSlide, sideGrid(?), peekAboo, previewGrid(?)
+      // verticalSpread, elasticSpread, fan, queue
         return (
             <div>
-                <Select  
-                  value={this.state.direction}  
-                  onChange={this.onSelect.bind(this)} 
-                  options={options} 
+                <ToggleCard 
+                  colors={colors.slice(0, 4)}
+                  width="350"
+                  height="300"
+                  direction="queue"
                 />
-                <TinderLikeCard 
-                  colors={colors} 
-                  width="250" 
-                  height="200" 
-                  duration={700}
-                  direction={this.state.direction}
-                >
-                  {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(i => (
-                    <div key={i} >{i}</div>
-                  ))}
-</TinderLikeCard>
             </div>
         )
     }
