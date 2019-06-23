@@ -1,32 +1,44 @@
+import styled from "styled-components"
 import * as React from "react"
-import posed, { PoseGroup } from "react-pose"
-import styled, { keyframes } from "styled-components"
+import posed from "react-pose"
+
 import objectSwitch from "./objectSwitch"
 
+namespace Style {
+    
+    export const bgColor = ({ background, bgStatus }: Toggle.Props) => bgStatus === "colors" ? background : "#000"
+    export const liHeight = ({ height }: Toggle.Props): string => height + "px"
+    export const liWidth = ({ width }: Toggle.Props): string => width + "px"
+    export const bgImage = ({ background }: Toggle.Props) => background
+}
+
 namespace Toggle {
+
     export interface Props {
-        duration: number
-        direction: string
-        colors: string[]
-        images: string[]
-        // onClick: () => void
-        width: string
-        height: string
-        className: string
         children: React.ReactNode
         [propName: string]: any
+        className: string
+        direction: string
+        duration: number
+        colors: string[]
+        images: string[]
+        height: string
+        width: string
     }
     export interface State {
-        list: any[]
+        stateOfContent: string
         content: string[]
         toggle: string
-        stateOfContent: string
+        list: any[]
     }
 }
 
 const Li = posed.li({
     init: {
+        transition: ({ duration }: Toggle.Props) => ({ duration }),
+
         opacity: ({ order, direction }: Toggle.Props): number => {
+
             return objectSwitch(direction, {
                 sideSlide: objectSwitch(order, {
                     0: 1,
@@ -36,40 +48,14 @@ const Li = posed.li({
                 default: 1,
             })
         },
-        x: ({ order, direction }: Toggle.Props): number => {
-            return objectSwitch(direction, {
-                sideGrid: objectSwitch(order, {
-                    0: 0,
-                    1: 70,
-                    2: -70,
-                    3: 70,
-                }),
-                sideSlide: objectSwitch(order, {
-                    0: 0,
-                    1: 170,
-                    2: -170,
-                    3: 0,
-                }),
-                default: 0.001,
-            })
-        },
-        y: ({ order, direction }: Toggle.Props): number => {
-            return objectSwitch(direction, {
-                sideGrid: objectSwitch(order, {
-                    0: 0,
-                    1: -60,
-                    2: 60,
-                    3: 60,
-                }),
-                default: 0.001,
-            })
-        },
+
         scale: ({ order, direction }: Toggle.Props): number => {
+
             return objectSwitch(direction, {
                 sideSlide: objectSwitch(order, {
                     0: 1,
-                    1: 0.8,
-                    2: 0.8,
+                    1: 0.6,
+                    2: 0.6,
                 }),
                 sideGrid: objectSwitch(order, {
                     0: 1,
@@ -83,10 +69,18 @@ const Li = posed.li({
                     2: 0.2,
                     3: 0.2,
                 }),
+                previewGrid: objectSwitch(order, {
+                    0: 1,
+                    1: 0.001,
+                    2: 0.001,
+                    3: 0.001,
+                }),
                 default: 1,
             })
         },
+
         rotate: ({ order, direction }: Toggle.Props): number => {
+
             return objectSwitch(direction, {
                 default: 0.001,
                 peekAboo: objectSwitch(order, {
@@ -97,73 +91,159 @@ const Li = posed.li({
                 }),
             }) 
         },
-        transition: ({ duration }: Toggle.Props) => ({ duration }),
+
+        x: ({ order, direction, width }: Toggle.Props): number => {
+
+            const newWidth  = Number.parseInt(width)
+            const previewX = newWidth  *  0.247
+
+            return objectSwitch(direction, {
+                sideGrid: objectSwitch(order, {
+                    0: 0,
+                    1: 70,
+                    2: -70,
+                    3: 70,
+                }),
+                sideSlide: objectSwitch(order, {
+                    0: 0,
+                    1: 170,
+                    2: -170,
+                    3: 0,
+                }),
+                previewGrid: objectSwitch(order, {
+                    0: 0,
+                    1: previewX,
+                    2: 0,
+                    3: -previewX,
+                }),
+                default: 0.001,
+            })
+        },
+
+        y: ({ order, direction, height }: Toggle.Props): number => {
+
+            const newHeight  = Number.parseInt(height)
+            const previewY1 = newHeight * 0.385
+
+            return objectSwitch(direction, {
+                previewGrid: objectSwitch(order, {
+                    0: 0,
+                    1: previewY1,
+                    2: previewY1,
+                    3: previewY1,
+                }),
+                sideGrid: objectSwitch(order, {
+                    0: 0,
+                    1: -60,
+                    2: 60,
+                    3: 60,
+                }),
+                default: 0.001,
+            })
+        },
     },
     toggled: {
+
         opacity: 1,
-        x: ({ order, direction }: Toggle.Props): number => {
+
+        x: ({ order, direction, width, height }: Toggle.Props): number => {
+            
+            const newWidth  = Number.parseInt(width)
+            const newHeight  = Number.parseInt(height)
+            const countFanX =  newHeight * 0.131
+            const countFanX1 =  newHeight * 0.07
+            const countFanX2 =  newHeight * 0.03
+            const previewX = newWidth  *  0.247
+            const countX = newWidth * 0.275
+            
             return objectSwitch(direction, {
-                openBottomLeft: objectSwitch(order, {
-                    0: -15,
-                    1: 0,
-                    2: 15,
-                }),
+
                 openBottomRight: objectSwitch(order, {
                     0: 15,
                     1: 0,
                     2: -15,
                 }),
+                
+                openBottomLeft: objectSwitch(order, {
+                    0: -15,
+                    1: 0,
+                    2: 15,
+                }),
+
+                randmRotation: objectSwitch(order, {
+                    0: 10,
+                }),
+
                 openTopRight: objectSwitch(order, {
                     0: 15,
                     1: 0,
                     2: -15,
                 }),
+            
                 openTopLeft: objectSwitch(order, {
                     0: -15,
                     1: 0,
                     2: 15,
                 }),
-                fanOut: objectSwitch(order, {
+                
+                previewGrid: objectSwitch(order, {
                     0: 0,
-                    1: -70,
-                    2: 70,
+                    1: previewX,
+                    2: 0.001,
+                    3: -previewX,
                 }),
-                randmRotation: objectSwitch(order, {
-                    0: 10,
-                }),
+
                 sideSlide: objectSwitch(order, {
                     0: 0,
                     1: 100,
                     2: -100,
                 }),
+
                 sideGrid: objectSwitch(order, {
-                    0: -70,
-                    1: 70,
-                    2: -70,
-                    3: 70,
+                    0: -countX,
+                    1: countX,
+                    2: -countX,
+                    3: countX,
                 }),
+
                 peekAboo: objectSwitch(order, {
                     0: 0,
                     1: -30,
                     2: 0,
                     3: 30,
                 }),
-                previewGrid: objectSwitch(order, {
+
+                fanOut: objectSwitch(order, {
                     0: 0,
-                    1: -55,
-                    2: 0.3,
-                    3: 57,
+                    1: -70,
+                    2: 70,
                 }),
+    
                 fan: objectSwitch(order, {
-                    0: -45,
-                    1: -20,
-                    2: -6,
+                    0: -countFanX,
+                    1: -countFanX1,
+                    2: -countFanX2,
                     3: 0,
                 }),
             })
         },
-        y: ({ order, direction }: Toggle.Props): number => {
+        y: ({ order, direction, width, height }: Toggle.Props): number => {
 
+            const newHeight  = Number.parseInt(height)
+            const previewY = newHeight * (0.73 * 0.19)
+            const newWidth  = Number.parseInt(width)
+            const countFanY1 =  newWidth * 0.067
+            const countFanY2 =  newWidth * 0.035
+            const previewY1 = newHeight * 0.385
+            const countFanY =  newWidth * 0.101
+            const countY = newHeight * 0.275
+            
+            const verticalSpreadElastic = objectSwitch(order, {
+                0: 75,
+                1: 50,
+                2: 25,
+                3: 0,
+            })
             const openBottom = objectSwitch(order, {
                 0: 15,
                 1: 0,
@@ -174,91 +254,106 @@ const Li = posed.li({
                 1: 0,
                 2: 15,
             })
-            const verticalSpreadElastic = objectSwitch(order, {
-                0: 75,
-                1: 50,
-                2: 25,
-                3: 0,
-            })
+            
             return objectSwitch(direction, {
-                openBottomLeft: openBottom,
-                openBottomRight: openBottom,
-                openTopRight: openTop,
-                openTopLeft: openTop,
-                fanOut: objectSwitch(order, {
-                    0: 0,
-                    1: 10,
-                    2: 10,
-                }),
+
+                verticalSpread: verticalSpreadElastic,
+
+                elasticSpread: verticalSpreadElastic,
+
                 randmRotation: objectSwitch(order, {
                     0: 10,
                 }),
-                sideGrid: objectSwitch(order, {
-                    0: -60,
-                    1: -60,
-                    2: 60,
-                    3: 60,
+
+                previewGrid: objectSwitch(order, {
+                    0: -previewY,
+                    1: previewY1,
+                    2: previewY1,
+                    3: previewY1,
                 }),
+
+                sideGrid: objectSwitch(order, {
+                    0: -countY,
+                    1: -countY,
+                    2: countY,
+                    3: countY,
+                }),
+
                 peekAboo: objectSwitch(order, {
                     0: 20,
                     1: -30,
                     2: -30,
                     3: -30,
                 }),
-                previewGrid: objectSwitch(order, {
-                    0: -29,
-                    1: 73,
-                    2: 73,
-                    3: 73,
+
+                fanOut: objectSwitch(order, {
+                    0: 0,
+                    1: 10,
+                    2: 10,
                 }),
-                verticalSpread: verticalSpreadElastic,
-                elasticSpread: verticalSpreadElastic,
-                fan: objectSwitch(order, {
-                    0: 40,
-                    1: 23,
-                    2: 6,
-                    3: 0,
-                }),
+
                 queue: objectSwitch(order, {
                     0: 10,
                     1: -20,
                     2: -50,
                     3: -80,
                 }),
+
+                openBottomRight: openBottom,
+
+                openBottomLeft: openBottom,
+
+                fan: objectSwitch(order, {
+                    0: countFanY,
+                    1: countFanY1,
+                    2: countFanY2,
+                    3: 0,
+                }),
+
+                openTopRight: openTop,
+
+                openTopLeft: openTop,
             })
         },
-        scale: ({ order, direction }: Toggle.Props): number => {
+        scale: ({ order, direction}: Toggle.Props): number => {
+
             return objectSwitch(direction, {
-                fanOut: objectSwitch(order, {
-                    0: 0.94,
-                    1: 0.9,
-                    2: 0.9,
-                    3: 0.92,
+
+                previewGrid: objectSwitch(order, {
+                    0: 0.725,
+                    1: 0.23,
+                    2: 0.23,
+                    3: 0.23,
                 }),
+
                 sideSlide: objectSwitch(order, {
-                    0: 1,
-                    1: 0.9,
-                    2: 0.9,
-                    3: 0.95,
+                    0: 0.95,
+                    1: 0.85,
+                    2: 0.85,
+                    3: 0.9,
                 }),
+
                 sideGrid: objectSwitch(order, {
-                    0: 0.52,
-                    1: 0.52,
-                    2: 0.52,
-                    3: 0.52,
+                    0: 0.45,
+                    1: 0.45,
+                    2: 0.45,
+                    3: 0.45,
                 }),
+
                 peekAboo: objectSwitch(order, {
                     0: 0.9,
                     1: 0.7,
                     2: 0.7,
                     3: 0.7,
                 }),
-                previewGrid: objectSwitch(order, {
-                    0: 0.7,
-                    1: 0.25,
-                    2: 0.25,
-                    3: 0.25,
+
+                fanOut: objectSwitch(order, {
+                    0: 0.94,
+                    1: 0.9,
+                    2: 0.9,
+                    3: 0.92,
                 }),
+                
                 queue: objectSwitch(order, {
                     0: 0.9,
                     1: 0.8,
@@ -268,44 +363,53 @@ const Li = posed.li({
             })
         },
         rotate: ({ order, direction }: Toggle.Props): number => {
+
             return objectSwitch(direction, {
-                fanOut: objectSwitch(order, {
-                    0: 0,
-                    1: -8,
-                    2: 8,
-                }),
+                
                 randmRotation: objectSwitch(order, {
                     0: 0,
                     1: -15,
                     2: 13,
                     3: 40,
                 }),
+
                 peekAboo: objectSwitch(order, {
                     0: 0,
                     1: -20,
                     2: 0,
                     3: 20,
                 }),
+
+                fanOut: objectSwitch(order, {
+                    0: 0,
+                    1: -8,
+                    2: 8,
+                }),
+
                 fan: objectSwitch(order, {
-                    0: 15,
+                    0: 13,
                     1: 8,
-                    2: 2,
+                    2: 4,
                     3: 0,
                 }),
             })
         },
         transition: ({ duration, order, direction }: Toggle.Props) => {
+
             return objectSwitch(direction, {
+
                 verticalSpread : objectSwitch(order, {
                     0: {duration},
                     1: {duration, delay: 100},
                     2: {duration, delay: 200},
                 }),
+
                 elasticSpread: {
                     stiffness: 500,
                     type: "spring",
                     duration,
                 },
+
                 default: {duration},
             })
         },
@@ -313,38 +417,35 @@ const Li = posed.li({
 })
 
 const StyledUl = styled.ul`
+  height: ${Style.liHeight};
+  width: ${Style.liWidth};
   position: relative;
-  height: ${({ height }: Toggle.Props): string => height + "px"};
-  width: ${({ width }: Toggle.Props): string => width + "px"};
-  margin: 100px;
 `
 const StyledLi = styled(Li)`
-  z-index: -1;
-  height: ${({ height }: Toggle.Props): string => height + "px"};
-  width: ${({ width }: Toggle.Props): string => width + "px"};
-  position: absolute;
-  top: 0;
-  left: 0;
-  list-style: none;
-  background: ${({ background, bgStatus }: Toggle.Props) => bgStatus === "colors" ? background : "#000"};
-  background-image: url(${({ background }: Toggle.Props) => background});
+  background: ${Style.bgColor};
+  background-image: url(${Style.bgImage});
   background-repeat: no-repeat;
   background-size: 100% 100%;
-`
-const Button = styled.button`
-  margin-top: 20rem
+  height: ${Style.liHeight};
+  width: ${Style.liWidth};
+  position: absolute;
+  list-style: none;
+  z-index: -1;
+  left: 0;
+  top: 0;
 `
 
 class ToggleCard extends React.Component<Toggle.Props, Toggle.State> {
 
     public state: Toggle.State = {
-        list: [],
-        content: [],
-        toggle: "init",
         stateOfContent: "",
+        toggle: "init",
+        content: [],
+        list: [],
     }
 
     public componentDidMount() {
+
         if (this.props.images === undefined) {
             this.setState({ stateOfContent: "colors", list: this.props.colors })
         } else {
@@ -352,18 +453,19 @@ class ToggleCard extends React.Component<Toggle.Props, Toggle.State> {
         }
     }
 
-    public click = () => {
+    public toggleMe = () => {
+
         this.state.toggle === "init"
             ? this.setState({ toggle: "toggled" })
             : this.setState({ toggle: "init" })
     }
 
     public render() {
-        //console.log(this.state.toggle)
+        
         const props = this.props
         const { list } = this.state
-        const newList = list.map((obj, key) => (
 
+        const newList = list.map((obj, key) => (
             <StyledLi
                 bgStatus={this.state.stateOfContent}
                 background={obj}
@@ -371,19 +473,16 @@ class ToggleCard extends React.Component<Toggle.Props, Toggle.State> {
                 direction={props.direction}
                 width={props.width}
                 height={props.height}
-                className={props.className}
                 key={key}
                 order={key}
                 pose={this.state.toggle}
             >{Array.isArray(props.children) ? props.children[key] : props.children}
             </StyledLi>
-
         )).reverse()
 
         return (
-            <StyledUl>
+            <StyledUl className={props.className}>
                 {newList}
-                <Button onClick={this.click}>Swipe</Button>
             </StyledUl>
         )
     }

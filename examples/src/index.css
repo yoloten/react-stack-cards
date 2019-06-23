@@ -1,0 +1,49 @@
+body{
+    margin: 0;
+}
+
+.flex{
+    display: flex;
+    flex-direction: row;
+}
+
+.btnToggle{
+    
+}
+
+.selectToggle{
+    width: 200px;
+    margin-top: -100px;
+}
+
+.selectTinder{
+    width: 200px;
+    margin-top: 50px;
+}
+
+.toggleDiv{
+    margin-left: 150px;
+}
+
+.tinderLikeDiv{
+    margin-left: 150px;
+}
+
+.toggle{
+    margin-top: 150px;
+}
+
+.btnToggle{
+    margin-top: 350px;
+    margin-left: 110px;
+}
+
+.btnTinder{
+    margin-top: 335px;
+    margin-left: 125px;
+}
+
+.stack{
+    margin-top: 150px;
+    margin-left: 150px;
+}
