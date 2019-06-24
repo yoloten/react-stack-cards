@@ -117,7 +117,7 @@ class App extends Component {
                   value={this.state.directionToggle} 
                   onChange={this.onSelect.bind(this)}
                   options={optionsToggle}
-                  placeholder="Select Toggle"
+                  placeholder={this.state.directionToggle === "" ? "selectToggle" : this.state.directionToggle}
                   className="selectToggle"
                 />
 

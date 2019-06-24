@@ -277,7 +277,6 @@ class TinderLikeCard extends React.Component<TinderLike.Props, TinderLike.State>
     }
 
     public componentDidMount() {
-
         if (this.props.images === undefined) {
            this.firstMount(this.props.colors)
            this.setState({ stateOfContent: "colors" })
@@ -288,7 +287,6 @@ class TinderLikeCard extends React.Component<TinderLike.Props, TinderLike.State>
     }
 
     public firstMount = (props: string[]) => {
-
         if (this.state.list.length === 0 && props !== undefined) {
             const newList = this.state.list
             for (let i = 0; i < 3; i++) {
@@ -301,7 +299,6 @@ class TinderLikeCard extends React.Component<TinderLike.Props, TinderLike.State>
             }
 
             const newContent = props.slice(3)
-
             this.setState({ list: newList, content: newContent })
         }
     }
