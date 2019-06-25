@@ -20,6 +20,20 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: ["style-loader", "css-loader"]
+            },
+            {
+                test: /\.(jpg|png)$/,
+                use: {
+                    loader: "file-loader",
+                    options: {
+                        name: "[path][name].[hash].[ext]",
+                    },
+                },
+            },
+            {
+                test: /\.(eot|svg|ttf|woff|woff2)$/,
+                use: [{ loader: 'file-loader?name=font/[name]__[hash:base64:5].[ext]' }],
+               
             }
         ]
     },

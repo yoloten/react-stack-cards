@@ -6,6 +6,8 @@ import StackCard from '../../lib/StackCard'
 import TinderLikeCard from '../../lib/TinderLikeCard'
 import ToggleCard from '../../lib/ToggleCard'
 import './index.css'
+import checked from "./checked.png"
+import github from "./github-logo.png"
 
 const optionsTinder = [
   { value: 'swipeRight', label: 'swipeRight' },
@@ -51,10 +53,9 @@ class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-      directionToggle: "",
       directionTinder: "",
+      isOpen: false
     }
-    this.Toggle = null
     this.Tinder = null
   }
   
@@ -67,7 +68,7 @@ class App extends Component {
   }
   
   onToggle() {
-    this.Toggle.toggleMe()
+    this.setState({isOpen: !this.state.isOpen})
   }
 
   onTinder() {
@@ -76,17 +77,16 @@ class App extends Component {
 
     render() {
         const first =
-        "https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?cs=srgb&dl=backlit-clouds-friends-853168.jpg&fm=jpg";
+        "https://www.worldatlas.com/r/w728-h425-c728x425/upload/46/cb/e1/shutterstock-252338818.jpg";
       const second =
-        "https://images.pexels.com/photos/842339/pexels-photo-842339.jpeg?cs=srgb&dl=black-and-white-city-crosswalk-842339.jpg&fm=jpg";
+        "https://draxe.com/wp-content/uploads/2018/12/KetoFruitHeader.jpg";
       const third =
-        "https://images.pexels.com/photos/697243/pexels-photo-697243.jpeg?cs=srgb&dl=backlit-bright-dawn-697243.jpg&fm=jpg";
+        "https://media.mnn.com/assets/images/2017/03/strawberries-basket.jpg.653x0_q80_crop-smart.jpg";
       const fourth =
-        "https://images.pexels.com/photos/697243/pexels-photo-697243.jpeg?cs=srgb&dl=backlit-bright-dawn-697243.jpg&fm=jpg";
+        "https://cdn.pixabay.com/photo/2017/05/06/21/19/strawberry-2290969_960_720.jpg";
       const arr = [first, second, third, fourth];
       const colors =  [
         "#c9c4bf",
-        "#252526",
         "#2b0eed",
         "#f95c5c",
         "#5cf9e4",
@@ -94,73 +94,82 @@ class App extends Component {
         "#ee42f4",
         "#e2f442",
         "#86f441",
+        "#252526",
+        "#ee42f4",
+        "#e2f442",
+        "#86f441",
+        "#252526",
       ]
   
         return (
-            <div className="flex">
+          <div className="main">
+
+            <div className="header">
+              <div className="headerIntro">
+                <h1>React Stack Cards</h1>
+                <h2>Collection of animated cards. Inspired by Tympanus.net</h2>
+              </div>
+              <div className="headerNpm">
+                <p className="howToInst">How to install</p>
+                <div className="install">
+                  <p>npm i -S react-stack-cards</p>
+                  <p className="yarn"># or yarn</p>
+                  <p>yarn add react-stack-cards</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="cards">
+
               <div  className="toggleDiv">
-
-              <ToggleCard 
-                  colors={colors.slice(0, 4)}
-                  width="300"
-                  height="200"
-                  direction={this.state.directionToggle}
-                  ref={(node) => this.Toggle = node}
+                <p className="animationName"><span>{"<"}</span>ToggleCard<span>{" />"}</span></p>
+                <ToggleCard 
+                  images={arr}
+                  width="350"
+                  height="240"
+                  direction="previewGrid"
                   className="toggle"
-                >
-                  {["This", "Is", "ToggleLike", "Animations"].map((i) => (
-                    <div>{i}</div>
-                  ))}
-                </ToggleCard>
-                
-                <Select
-                  value={this.state.directionToggle} 
-                  onChange={this.onSelect.bind(this)}
-                  options={optionsToggle}
-                  placeholder={this.state.directionToggle === "" ? "selectToggle" : this.state.directionToggle}
-                  className="selectToggle"
+                  isOpen={this.state.isOpen}
+                  onClick={()=> alert("Hello")}
                 />
-
-                <button className="btnToggle" onClick={this.onToggle.bind(this)}>Toggle</button>
-              
+                <button className="btnToggle" onClick={this.onToggle.bind(this)}><img src={checked} alt=""/></button>
               </div>
 
               <div className='tinderLikeDiv'>
-
-                <Select
-                  value={this.state.directionTinder} 
-                  onChange={this.onSelectTinder.bind(this)}
-                  options={optionsTinder}
-                  placeholder="Select Tinder"
-                  className="selectTinder"
-                />
-
+                <p className="animationName"><span>{"<"}</span>TinderCard<span>{" />"}</span></p>
                 <TinderLikeCard
-                  colors={colors}
-                  width="300"
-                  height="200"
-                  direction={this.state.directionTinder}
+                  images={arr}
+                  width="350"
+                  height="240"
+                  direction="swipeThrowDown"
                   ref={(node) => this.Tinder = node}
-                >
-                  {["This", "Is", "TinderLike", "Animations"].map((i) => (
-                    <div>{i}</div>
-                  ))}
-                </TinderLikeCard>
-
-                <button className="btnTinder" onClick={this.onTinder.bind(this)}>Press</button>
-              
+                  className="tinder"
+                />
+                <button className="btnTinder" onClick={this.onTinder.bind(this)}><img src={checked} alt=""/></button>
               </div>
 
               <div className="stack">
+              <p className="animationName"><span>{"<"}</span>StackCard<span>{" />"}</span></p>
                 <StackCard
+                  images={arr}
                   color={"#f95c5c"}
-                  width="300"
-                  height="200"
-                >
-                  <h2>This is stack Animations</h2>
-                </StackCard>
+                  width="350"
+                  height="240"
+                  direction="bottomLeft"
+                  onClick={()=> alert("Hello")}
+                />
               </div>
             </div>
+
+            <div className="footer">
+              <p className="powered">Powered by <b>Rustam Sahatov</b></p>
+              <div className="link">
+                <img src={github} alt=""/>
+                <a href="#" className="footerA">Project on Github</a>
+              </div>
+            </div>        
+
+          </div>
         )
     }
 }

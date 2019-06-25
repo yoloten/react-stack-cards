@@ -1,49 +1,155 @@
 body{
     margin: 0;
+    color: rgb(218, 218, 218);
+    background: #232323;
+    background-repeat: no-repeat;
+    height: 100%;
+}
+@font-face {
+    font-family: "Firacoderegular";
+    src: url("./Firacoderegular.ttf");
 }
 
-.flex{
+@font-face {
+    font-family: "SFProDisplay-Thin";
+    src: url("./SFProDisplay-Thin.ttf");
+}
+
+@font-face {
+    font-family: "SFProDisplay-Regular";
+    src: url("./SFProDisplay-Regular.ttf");
+}
+
+.main{
+    display: flex;
+    flex-direction: column
+}
+
+.header{
+    display: flex;
+}
+
+.headerIntro{
+    font-family: "SFProDisplay-Thin";
+    margin: 84 0 0 64; 
+    border-bottom: 4px solid grey;
+    height: 155px;
+    width: 350px;
+}
+
+h1{
+    font-size: 28px;
+}
+h2{
+    font-size: 18px;
+    width: 250px;  
+}
+
+
+.headerNpm{
+    margin: 80 0 0 124; 
+}
+
+.howToInst{
+    font-family: "SFProDisplay-Regular";
+    font-size: 20px;
+}
+
+.install{
+    margin-top: -5px;
+    font-family: "Firacoderegular";
+    border: 1px solid transparent;
+    border-radius: 3px;
+    background: #363636;
+    width: 290px;
+    font-size: 16px;
+    line-height: 5px;
+    padding-left: 10px
+}
+
+.yarn{
+    color: rgb(163, 163, 163)
+}
+
+.cards{
+    margin: 64 0 0 64;
     display: flex;
     flex-direction: row;
 }
 
+.animationName{
+    color: #ffbc6b;
+    font-family: "Firacoderegular";
+    font-size: 20px;
+    margin-bottom: 64px;
+}
+
+span{
+    color:#499bb2
+}
+
 .btnToggle{
-    
-}
-
-.selectToggle{
-    width: 200px;
-    margin-top: 50px;
-}
-
-.selectTinder{
-    width: 200px;
-    margin-top: 50px;
-}
-
-.toggleDiv{
-    margin-left: 150px;
+    margin-top: 32px;
+    margin-left: 145px;
+    border-radius: 100px;
+    border: none;
+    height: 60px;
+    width: 60px;
+    background: #cdda54;
+    cursor: pointer;
 }
 
 .tinderLikeDiv{
-    margin-left: 150px;
+    margin-left: 144px;
 }
 
-.toggle{
-    margin-top: 150px;
-}
-
-.btnToggle{
-    margin-top: 350px;
-    margin-left: 110px;
+.tinder{
+    margin-top: -60px;
 }
 
 .btnTinder{
-    margin-top: 335px;
-    margin-left: 125px;
+    margin-top: 95px;
+    margin-left: 145px;
+    border-radius: 100px;
+    border: none;
+    height: 60px;
+    width: 60px;
+    background: #cdda54;
+    cursor: pointer;
 }
 
 .stack{
-    margin-top: 150px;
-    margin-left: 150px;
+    margin-left: 144px;
+}
+
+.footer{
+    clip-path: polygon(100% 6%, 0 100%, 100% 100%);
+    background: #fff;
+    width: 400px;
+    height: 360px;
+    margin: -80 0 0 1;
+    align-self: flex-end;
+    color: #000;
+}
+.powered{
+    font-family: "SFProDisplay-Regular";
+    font-size: 18px;
+    margin-top: 280px;
+    margin-left: 130px;
+    margin-bottom: 10px;
+}
+
+.footerA{
+    font-family: "SFProDisplay-Regular";
+    text-decoration: none;
+    font-size: 16px;
+    color: #000;
+    align-self: center;
+    margin-left: 10px;
+}
+
+.link{
+    display: flex;
+    flex-direction: row;
+    margin-left: 200px;
 }

@@ -13,10 +13,12 @@ namespace Style {
 }
 
 namespace Toggle {
-
     export interface Props {
         children: React.ReactNode
+        onMouseEnter: () => void
+        onMouseLeave: () => void
         [propName: string]: any
+        onClick: () => void
         className: string
         direction: string
         duration: number
@@ -27,115 +29,110 @@ namespace Toggle {
     }
     export interface State {
         stateOfContent: string
-        content: string[]
-        toggle: string
         list: any[]
         [propName: string]: any
     }
 }
 
-const beforeAndAfter = {
-    transition: ({ duration }: Toggle.Props) => ({ duration }),
-    opacity: ({ order, direction }: Toggle.Props): number => {
-        return objectSwitch(direction, {
-            sideSlide: objectSwitch(order, {
-                0: 1,
-                1: 0.001,
-                2: 0.001,
-            }),
-            default: 1,
-        })
-    },
-    scale: ({ order, direction }: Toggle.Props): number => {
-        return objectSwitch(direction, {
-            sideSlide: objectSwitch(order, {
-                0: 1,
-                1: 0.6,
-                2: 0.6,
-            }),
-            sideGrid: objectSwitch(order, {
-                0: 1,
-                1: 0.001,
-                2: 0.001,
-                3: 0.001,
-            }),
-            peekAboo: objectSwitch(order, {
-                0: 1,
-                1: 0.2,
-                2: 0.2,
-                3: 0.2,
-            }),
-            previewGrid: objectSwitch(order, {
-                0: 1,
-                1: 0.001,
-                2: 0.001,
-                3: 0.001,
-            }),
-            default: 1,
-        })
-    },
-    rotate: ({ order, direction }: Toggle.Props): number => {
-        return objectSwitch(direction, {
-            default: 0.001,
-            peekAboo: objectSwitch(order, {
-                0: 0,
-                1: 40,
-                2: 0,
-                3: -40,
-            }),
-        }) 
-    },
-    x: ({ order, direction, width }: Toggle.Props): number => {
-        const newWidth  = Number.parseInt(width)
-        const previewX = newWidth  *  0.247
-
-        return objectSwitch(direction, {
-            sideGrid: objectSwitch(order, {
-                0: 0,
-                1: 70,
-                2: -70,
-                3: 70,
-            }),
-            sideSlide: objectSwitch(order, {
-                0: 0,
-                1: 170,
-                2: -170,
-                3: 0,
-            }),
-            previewGrid: objectSwitch(order, {
-                0: 0,
-                1: previewX,
-                2: 0,
-                3: -previewX,
-            }),
-            default: 0.001,
-        })
-    },
-    y: ({ order, direction, height }: Toggle.Props): number => {
-        const newHeight  = Number.parseInt(height)
-        const previewY1 = newHeight * 0.385
-
-        return objectSwitch(direction, {
-            previewGrid: objectSwitch(order, {
-                0: 0,
-                1: previewY1,
-                2: previewY1,
-                3: previewY1,
-            }),
-            sideGrid: objectSwitch(order, {
-                0: 0,
-                1: -60,
-                2: 60,
-                3: 60,
-            }),
-            default: 0.001,
-        })
-    },
-},
-
 const Li = posed.div({
-    init: beforeAndAfter,
-    in: beforeAndAfter,
+    in:  {
+        transition: ({ duration }: Toggle.Props) => ({ duration }),
+        opacity: ({ order, direction }: Toggle.Props): number => {
+            return objectSwitch(direction, {
+                sideSlide: objectSwitch(order, {
+                    0: 1,
+                    1: 0.001,
+                    2: 0.001,
+                }),
+                default: 1,
+            })
+        },
+        scale: ({ order, direction }: Toggle.Props): number => {
+            return objectSwitch(direction, {
+                sideSlide: objectSwitch(order, {
+                    0: 1,
+                    1: 0.6,
+                    2: 0.6,
+                }),
+                sideGrid: objectSwitch(order, {
+                    0: 1,
+                    1: 0.001,
+                    2: 0.001,
+                    3: 0.001,
+                }),
+                peekAboo: objectSwitch(order, {
+                    0: 1,
+                    1: 0.2,
+                    2: 0.2,
+                    3: 0.2,
+                }),
+                previewGrid: objectSwitch(order, {
+                    0: 1,
+                    1: 0.001,
+                    2: 0.001,
+                    3: 0.001,
+                }),
+                default: 1,
+            })
+        },
+        rotate: ({ order, direction }: Toggle.Props): number => {
+            return objectSwitch(direction, {
+                default: 0.001,
+                peekAboo: objectSwitch(order, {
+                    0: 0,
+                    1: 40,
+                    2: 0,
+                    3: -40,
+                }),
+            }) 
+        },
+        x: ({ order, direction, width }: Toggle.Props): number => {
+            const newWidth  = Number.parseInt(width)
+            const previewX = newWidth  *  0.247
+    
+            return objectSwitch(direction, {
+                sideGrid: objectSwitch(order, {
+                    0: 0,
+                    1: 70,
+                    2: -70,
+                    3: 70,
+                }),
+                sideSlide: objectSwitch(order, {
+                    0: 0,
+                    1: 170,
+                    2: -170,
+                    3: 0,
+                }),
+                previewGrid: objectSwitch(order, {
+                    0: 0,
+                    1: previewX,
+                    2: 0,
+                    3: -previewX,
+                }),
+                default: 0.001,
+            })
+        },
+        y: ({ order, direction, height }: Toggle.Props): number => {
+            const newHeight  = Number.parseInt(height)
+            const previewY1 = newHeight * 0.385
+    
+            return objectSwitch(direction, {
+                previewGrid: objectSwitch(order, {
+                    0: 0,
+                    1: previewY1,
+                    2: previewY1,
+                    3: previewY1,
+                }),
+                sideGrid: objectSwitch(order, {
+                    0: 0,
+                    1: -60,
+                    2: 60,
+                    3: 60,
+                }),
+                default: 0.001,
+            })
+        },
+    },
     toggled: {
         opacity: 1,
         x: ({ order, direction, width, height }: Toggle.Props): number => {
@@ -404,11 +401,6 @@ const Li = posed.div({
     },
 })
 
-const StyledUl = styled.div`
-  height: ${Style.liHeight};
-  width: ${Style.liWidth};
-  position: relative;
-`
 const StyledLi = styled(Li)`
   background: ${Style.bgColor};
   background-image: url(${Style.bgImage});
@@ -422,22 +414,17 @@ const StyledLi = styled(Li)`
   left: 0;
   top: 0;
 `
+const StyledUl = styled.div`
+  height: ${Style.liHeight};
+  width: ${Style.liWidth};
+  position: relative;
+`
 
 class ToggleCard extends React.Component<Toggle.Props, Toggle.State> {
 
     public state: Toggle.State = {
         stateOfContent: "",
-        toggle: "init",
-        content: [],
         list: [],
-    }
-
-    public componentDidUpdate(prev) {
-        if (this.props.direction !== prev.direction) {
-            this.state.toggle === "init" 
-                ? this.setState({ toggle: "in" })
-                : this.setState({ toggle: "init" })
-        }
     }
 
     public componentDidMount() {
@@ -448,35 +435,35 @@ class ToggleCard extends React.Component<Toggle.Props, Toggle.State> {
         }
     }
 
-    public toggleMe = () => {
-        this.state.toggle !== "toggled"
-            ? this.setState({ toggle: "toggled" })
-            : this.setState({ toggle: "in" })
-    }
-
     public render() {
-        
         const props = this.props
         const { list } = this.state
-        console.log(this.state.direction)
+        
         const newList = list.map((obj, key) => (
             <StyledLi
+                pose={this.props.isOpen ?  "toggled" : "in"}
                 bgStatus={this.state.stateOfContent}
-                background={obj}
-                duration={props.duration}
                 direction={props.direction}
-                width={props.width}
+                duration={props.duration}
                 height={props.height}
-                key={key}
+                width={props.width}
+                background={obj}
                 order={key}
-                pose={this.state.toggle}
-                className={props.className}
-            >{Array.isArray(props.children) ? props.children[key] : props.children}
+                key={key} 
+            >
+            {Array.isArray(props.children) ? props.children[key] : props.children}
             </StyledLi>
         )).reverse()
 
         return (
-            <StyledUl>
+            <StyledUl 
+                onMouseEnter={props.onMouseEnter}
+                onMouseLeave={props.onMouseLeave}
+                className={props.className} 
+                onClick={props.onClick}
+                height={props.height}
+                width={props.width} 
+            >
                 {newList}
             </StyledUl>
         )

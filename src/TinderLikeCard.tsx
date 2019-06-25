@@ -60,7 +60,7 @@ const middleTransition = ({ direction }: TinderLike.Props): number => {
     })
 }
 
-const Li = posed.li({
+const Li = posed.div({
     init: {
         transition: ({ duration }: TinderLike.Props) => ({duration}),
         scale: ({ order }: TinderLike.Props): number => {
@@ -239,7 +239,7 @@ const Li = posed.li({
     },
 })
 
-const StyledUl = styled.ul`
+const StyledUl = styled.div`
   height: ${Style.liHeight};
   width: ${Style.liWidth}; 
   position: relative;
@@ -340,22 +340,26 @@ class TinderLikeCard extends React.Component<TinderLike.Props, TinderLike.State>
 
         const newList = !list.length ? "" : list.map((card, key) => (
             <StyledLi
-                bgStatus={this.state.stateOfContent}
-                background={card.val}
-                duration={props.duration}
-                direction={props.direction}
-                width={props.width}
-                height={props.height}
-                key={key}
                 pose={[card.out, card.out2, card.middle, card.in]}
+                bgStatus={this.state.stateOfContent}
+                direction={props.direction}
+                duration={props.duration}
+                height={props.height}
+                background={card.val}
+                width={props.width}
                 order={key}
+                key={key}
             >
             {Array.isArray(props.children) ? props.children[key] : props.children}
             </StyledLi>
         )).reverse()
 
         return (
-            <StyledUl className={props.className}>
+            <StyledUl 
+                className={props.className} 
+                height={this.props.height}
+                width={this.props.width} 
+            >
                 {newList}
             </StyledUl>
         )
