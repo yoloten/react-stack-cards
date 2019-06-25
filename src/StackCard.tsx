@@ -217,7 +217,7 @@ export class StackCard extends React.Component <Stack.Props, {}> {
             order={0}
         >
         {DecoBoxes}
-        </StyledBox>
+        </StyledBox> 
 )
     }
 }

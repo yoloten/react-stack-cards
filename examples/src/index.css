@@ -3,7 +3,7 @@ body{
     color: rgb(218, 218, 218);
     background: #232323;
     background-repeat: no-repeat;
-    height: 100%;
+    height: 100vh;
 }
 @font-face {
     font-family: "Firacoderegular";
@@ -99,6 +99,13 @@ span{
     cursor: pointer;
 }
 
+.toggleSelect{
+    width: 200px;
+    margin-top: -20px;
+    margin-bottom: 40px;
+    color: rgb(73, 73, 73)
+}
+
 .tinderLikeDiv{
     margin-left: 144px;
 }
@@ -108,7 +115,7 @@ span{
 }
 
 .btnTinder{
-    margin-top: 95px;
+    margin-top: 90px;
     margin-left: 145px;
     border-radius: 100px;
     border: none;
@@ -126,16 +133,16 @@ span{
     clip-path: polygon(100% 6%, 0 100%, 100% 100%);
     background: #fff;
     width: 400px;
-    height: 360px;
-    margin: -80 0 0 1;
+    height: 280px;
+    margin: -140 0 0 1;
     align-self: flex-end;
     color: #000;
 }
 .powered{
     font-family: "SFProDisplay-Regular";
     font-size: 18px;
-    margin-top: 280px;
-    margin-left: 130px;
+    margin-top: 200px;
+    margin-left: 150px;
     margin-bottom: 10px;
 }
 
@@ -151,5 +158,66 @@ span{
 .link{
     display: flex;
     flex-direction: row;
-    margin-left: 200px;
+    margin-left: 222px;
 }
+
+.tgl {
+    display: none;
+  }
+  .tgl, .tgl:after, .tgl:before, .tgl *, .tgl *:after, .tgl *:before, .tgl + .tgl-btn {
+    box-sizing: border-box;
+  }
+  .tgl::selection, .tgl:after::selection, .tgl:before::selection, .tgl *::selection, .tgl *:after::selection, .tgl *:before::selection, .tgl + .tgl-btn::selection {
+    background: none;
+  }
+  .tgl + .tgl-btn {
+    outline: 0;
+    display: block;
+    width: 3em;
+    height: 1.5em;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+  }
+  .tgl + .tgl-btn:after, .tgl + .tgl-btn:before {
+    position: relative;
+    display: block;
+    content: "";
+    width: 50%;
+    height: 100%;
+  }
+  .tgl + .tgl-btn:after {
+    left: 0;
+  }
+  .tgl + .tgl-btn:before {
+    display: none;
+  }
+  .tgl:checked + .tgl-btn:after {
+    left: 50%;
+  }
+  .tgl-light + .tgl-btn {
+    margin-left: 140px;
+    margin-top: 44px;
+    width: 70px;
+    height: 35px;
+    background: #d3d3d3;
+    border-radius: 2em;
+    padding: 2px;
+    transition: all 0.4s ease;
+  }
+  .tgl-light + .tgl-btn:after {
+    border-radius: 50%;
+    background: #fff;
+    transition: all 0.2s ease;
+  }
+  .tgl-light:checked + .tgl-btn {
+    background: #81cf96;
+  }
+
+  .git{
+      height: 32px;
+  }
+
+  .checked{
+      height: 32px;
+  }

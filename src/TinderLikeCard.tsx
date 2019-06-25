@@ -243,6 +243,7 @@ const StyledUl = styled.div`
   height: ${Style.liHeight};
   width: ${Style.liWidth}; 
   position: relative;
+  z-index: -1;
 `
 const fadeOut = keyframes`
   0% opacity: 1;

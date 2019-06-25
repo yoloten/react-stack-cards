@@ -6,8 +6,8 @@ import StackCard from '../../lib/StackCard'
 import TinderLikeCard from '../../lib/TinderLikeCard'
 import ToggleCard from '../../lib/ToggleCard'
 import './index.css'
-import checked from "./checked.png"
-import github from "./github-logo.png"
+import checked from "./checked.svg"
+import github from "./github-logo.svg"
 
 const optionsTinder = [
   { value: 'swipeRight', label: 'swipeRight' },
@@ -49,11 +49,24 @@ const optionsToggle = [
   { value: 'queue', label: 'queue' },
 ]
 
+const optionsStack = [
+  { value: 'accordeonRight', label: 'accordeonRight' },
+  { value: 'accordeonLeft', label: 'accordeonLeft' },
+  { value: 'spread', label: 'spread' },
+  { value: 'bottomRight', label: 'bottomRight' },
+  { value: 'bottomLeft', label: 'bottomLeft' },
+  { value: 'topRight', label: 'topRight' },
+  { value: 'topLeft', label: 'topLeft' },
+  { value: 'center', label: 'center' },
+]
+
 class App extends Component {
   constructor(props){
     super(props)
     this.state = {
       directionTinder: "",
+      directionToggle: "",
+      directionStack: "",
       isOpen: false
     }
     this.Tinder = null
@@ -65,6 +78,10 @@ class App extends Component {
 
   onSelectTinder(elem) {
     this.setState({directionTinder: elem.value })
+  }
+
+  onSelectStack(elem) {
+    this.setState({directionStack: elem.value })
   }
   
   onToggle() {
@@ -84,7 +101,8 @@ class App extends Component {
         "https://media.mnn.com/assets/images/2017/03/strawberries-basket.jpg.653x0_q80_crop-smart.jpg";
       const fourth =
         "https://cdn.pixabay.com/photo/2017/05/06/21/19/strawberry-2290969_960_720.jpg";
-      const arr = [first, second, third, fourth];
+      const arr = [first, second, third, fourth]
+      let arr1 =  Array(100).fill(arr[0])
       const colors =  [
         "#c9c4bf",
         "#2b0eed",
@@ -123,39 +141,61 @@ class App extends Component {
 
               <div  className="toggleDiv">
                 <p className="animationName"><span>{"<"}</span>ToggleCard<span>{" />"}</span></p>
+                <Select
+                  className='toggleSelect'
+                  options={optionsToggle}
+                  value={this.state.directionToggle}
+                  onChange={this.onSelect.bind(this)}
+                  placeholder={this.state.directionToggle === '' ? "Select animation" : this.state.directionToggle}
+                />
                 <ToggleCard 
                   images={arr}
                   width="350"
                   height="240"
-                  direction="previewGrid"
+                  direction={this.state.directionToggle}
                   className="toggle"
                   isOpen={this.state.isOpen}
                   onClick={()=> alert("Hello")}
                 />
-                <button className="btnToggle" onClick={this.onToggle.bind(this)}><img src={checked} alt=""/></button>
+                <input type="checkbox" onClick={this.onToggle.bind(this)} id="cb" className="tgl tgl-light"/>
+                <label htmlFor="cb" className="tgl-btn"></label>
               </div>
 
               <div className='tinderLikeDiv'>
-                <p className="animationName"><span>{"<"}</span>TinderCard<span>{" />"}</span></p>
+                <p className="animationName"><span>{"<"}</span>TinderLikeCard<span>{" />"}</span></p>
+                <Select
+                  className='toggleSelect'
+                  options={optionsTinder}
+                  value={this.state.directionTinder}
+                  onChange={this.onSelectTinder.bind(this)}
+                  placeholder={this.state.directionTinder === '' ? "Select animation" : this.state.directionTinder}
+                />
                 <TinderLikeCard
-                  images={arr}
+                  images={arr1}
                   width="350"
                   height="240"
-                  direction="swipeThrowDown"
+                  direction={this.state.directionTinder}
                   ref={(node) => this.Tinder = node}
                   className="tinder"
                 />
-                <button className="btnTinder" onClick={this.onTinder.bind(this)}><img src={checked} alt=""/></button>
+                <button className="btnTinder" onClick={this.onTinder.bind(this)}><img className="checked" src={checked} alt=""/></button>
               </div>
 
               <div className="stack">
               <p className="animationName"><span>{"<"}</span>StackCard<span>{" />"}</span></p>
+              <Select
+                  className='toggleSelect'
+                  options={optionsStack}
+                  value={this.state.directionStack}
+                  onChange={this.onSelectStack.bind(this)}
+                  placeholder={this.state.directionStack === '' ? "Select direction" : this.state.directionStack}
+                />
                 <StackCard
                   images={arr}
                   color={"#f95c5c"}
                   width="350"
                   height="240"
-                  direction="bottomLeft"
+                  direction={this.state.directionStack}
                   onClick={()=> alert("Hello")}
                 />
               </div>
@@ -164,7 +204,7 @@ class App extends Component {
             <div className="footer">
               <p className="powered">Powered by <b>Rustam Sahatov</b></p>
               <div className="link">
-                <img src={github} alt=""/>
+                <img className="git" src={github} alt=""/>
                 <a href="#" className="footerA">Project on Github</a>
               </div>
             </div>        
