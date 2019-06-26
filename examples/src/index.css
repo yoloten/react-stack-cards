@@ -499,7 +499,7 @@ h2{
     .cards{
         margin: 0 0 40 40;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         flex-wrap: wrap;
     }
     
@@ -513,14 +513,12 @@ h2{
     
     .toggleDiv{
         margin: auto;
-        padding-right: 100px;
-        padding-left: 100px;
+    
     }
     
     .tinderLikeDiv{
         margin: auto;
-        padding-right: 100px;
-        padding-left: 100px;
+      
     }
     
     .tinder{
@@ -566,11 +564,11 @@ h2{
  }
 
  @media screen and (max-width: 739px){
-
+   
     .header{
         display: flex;
         flex-wrap: wrap;
-        margin-left: 40px;
+        margin-left: 5px;
         margin-right: 40px;
         margin-top: 40px
     }
@@ -593,9 +591,9 @@ h2{
     }
     
     .cards{
-        margin: 0 0 40 40;
+        margin: 0 0 0 2;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         flex-wrap: wrap;
     }
     
@@ -621,23 +619,24 @@ h2{
     
     .stack{
         margin: auto;
-        padding-bottom: 100px;
+        padding-bottom: 150px;
     }
     
     .footer{
         clip-path: polygon(100% 6%, 0 100%, 100% 100%);
         background: #fff;
-        width: 400px;
+        width: 330px;
         height: 280px;
-        margin: -135 0 0 1;
+        margin-top: -135;
+        margin-left: -50px;
         align-self: flex-end;
         color: #000;
     }
     .powered{
         font-family: "SFProDisplay-Regular";
-        font-size: 18px;
+        font-size: 17px;
         margin-top: 200px;
-        margin-left: 150px;
+        margin-left: 100px;
         margin-bottom: 10px;
     }
     
@@ -647,12 +646,11 @@ h2{
         font-size: 16px;
         color: #000;
         align-self: center;
-        margin-left: 10px;
     }
     
     .link{
         display: flex;
         flex-direction: row;
-        margin-left: 222px;
+        margin-left: 170px;
     }
  }
