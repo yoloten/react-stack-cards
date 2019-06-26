@@ -64,9 +64,9 @@ class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-      directionTinder: "",
-      directionToggle: "",
-      directionStack: "",
+      directionTinder: "swipeCornerDownRight",
+      directionToggle: "sideSlide",
+      directionStack: "topRight",
       isOpen: false
     }
     this.Tinder = null
@@ -102,7 +102,11 @@ class App extends Component {
       const fourth =
         "https://cdn.pixabay.com/photo/2017/05/06/21/19/strawberry-2290969_960_720.jpg";
       const arr = [first, second, third, fourth]
-      let arr1 =  Array(100).fill(arr[0])
+      let arr1 = [first, second, third, fourth ]
+      for (let i = 0; i < 50; i++) {
+        arr1 = arr1.concat(arr)
+      } 
+      
       const colors =  [
         "#c9c4bf",
         "#2b0eed",
@@ -125,7 +129,7 @@ class App extends Component {
             <div className="header">
               <div className="headerIntro">
                 <h1>React Stack Cards</h1>
-                <h2>Collection of animated cards. Inspired by Tympanus.net</h2>
+                <h2>Collection of animated cards. Inspired by <a className="tympanus" href="https://tympanus.net/codrops/">Tympanus.net</a></h2>
               </div>
               <div className="headerNpm">
                 <p className="howToInst">How to install</p>
@@ -205,7 +209,7 @@ class App extends Component {
               <p className="powered">Powered by <b>Rustam Sahatov</b></p>
               <div className="link">
                 <img className="git" src={github} alt=""/>
-                <a href="#" className="footerA">Project on Github</a>
+                <a href="https://github.com/yoloten/react-stack-cards" className="footerA">Project on Github</a>
               </div>
             </div>        
 
