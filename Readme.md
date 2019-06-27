@@ -38,7 +38,10 @@ class Example extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      directionTinder: "swipeCornerDownRight"
+      directionTinder: "swipeCornerDownRight",
+      directionToggle: "sideSlide",
+      directionStack: "topRight",
+      isOpen: false
     }
     this.Tinder = null
   }
@@ -46,11 +49,25 @@ class Example extends React.Component {
   onTinderSwipe() {
     this.Tinder.swipe()
   }
+  onToggle() {
+    this.setState({isOpen: !this.state.isOpen})
+  }
+
 
   render() {
     const arr = [first, second, third, fourth]
     const numbers = [0, 1, 2, 3]
     return (
+        <ToggleCard 
+          images={arr}
+          width="350"
+          height="240"
+          direction={this.state.directionToggle}
+          duration={400}
+          className="toggle"
+          isOpen={this.state.isOpen}
+          onClick={()=> alert("Hello")}
+        />
         <TinderLikeCard
             images={arr}
             width="350"
@@ -62,6 +79,14 @@ class Example extends React.Component {
         >
             { numbers.map( i => <div>{i}</div> )}
         </TinderLikeCards>
+        <StackCard
+          images={arr}
+          color={"#f95c5c"}
+          width="350"
+          height="240"
+          direction={this.state.directionStack}
+          onClick={()=> alert("Hello")}
+        />
     );
   }
 }
