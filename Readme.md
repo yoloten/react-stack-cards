@@ -1,7 +1,7 @@
 # React-Stack-Cards
 
 Collection of stack card effects exclusively for React that's perfect for galleries and preview grids. Inspired by ideas from tympanus.net. 
-See the demo (https://yoloten.github.io/react-stack-cards/
+See the demo https://yoloten.github.io/react-stack-cards/
 
 Feautures: 
 
