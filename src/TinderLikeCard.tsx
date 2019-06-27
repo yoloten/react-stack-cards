@@ -304,7 +304,7 @@ class TinderLikeCard extends React.Component<TinderLike.Props, TinderLike.State>
         }
     }
 
-    public click = () => {
+    public swipe = () => {
 
         const { current, list } = this.state 
         const newList = this.state.list

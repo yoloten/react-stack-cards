@@ -89,7 +89,7 @@ class App extends Component {
   }
 
   onTinder() {
-    this.Tinder.click()
+    this.Tinder.swipe()
   }
 
     render() {
