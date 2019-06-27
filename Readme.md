@@ -67,9 +67,8 @@ class Example extends React.Component {
 }
 
 ```
-##Props
-
- Common props for all three components:
+## Props
+Common props for all three components:
 
 - `children` - allows to add children elements (React.Element)
 - `className` - apply a className to the control (string)
