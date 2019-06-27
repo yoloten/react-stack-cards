@@ -32,7 +32,7 @@ yarn add react-stack-cards
 ## Simple usage
 
 ```javascript
-import {ToggleCard, TinderLikeCard, StackCard} from 'react-card-effects'
+import { ToggleCard, TinderLikeCard, StackCard } from 'react-card-effects'
 
 class Example extends React.Component {
   constructor(props){
@@ -52,7 +52,6 @@ class Example extends React.Component {
   onToggle() {
     this.setState({isOpen: !this.state.isOpen})
   }
-
 
   render() {
     const arr = [first, second, third, fourth]
