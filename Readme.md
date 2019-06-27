@@ -67,7 +67,9 @@ class Example extends React.Component {
           className="toggle"
           isOpen={this.state.isOpen}
           onClick={()=> alert("Hello")}
-        />
+        >
+        { numbers.map( i => <div>{i}</div> )}
+        </ToggleCard>
         <TinderLikeCard
             images={arr}
             width="350"
@@ -86,7 +88,9 @@ class Example extends React.Component {
           height="240"
           direction={this.state.directionStack}
           onClick={()=> alert("Hello")}
-        />
+        >
+          <div>{i}</div>
+        </StackCard>
     );
   }
 }
