@@ -1,19 +1,20 @@
 # React-Stack-Cards
 
 Collection of stack card effects exclusively for React that's perfect for galleries and preview grids. Inspired by ideas from tympanus.net. 
-See the demo [demo](https://yoloten.github.io/react-stack-cards/
+See the demo (https://yoloten.github.io/react-stack-cards/
 
 Feautures: 
 
-*Animations on hover, swipe and toggle
-*Swipe animations allow you to work with big amount of images and colors
-*Flexible settings like adding elements into the cards, change duration of animation and etc.
-*Effects actually look awesome :blush:
+- Animations on hover, swipe and toggle
+- Swipe animations allow you to work with big amount of images and colors
+- Flexible settings like adding elements into the cards, change duration of animation and etc.
+- Effects actually look awesome :blush:
 
 Available components:
-*'ToggleCard'
-*'TinderLikeCard'
-*'StackCard'
+
+- `ToggleCard`
+- `TinderLikeCard`
+- `StackCard`
 
 ## Installation
 
@@ -68,34 +69,36 @@ class Example extends React.Component {
 ```
 ##Props
 
-Common props for all three components:
+ Common props for all three components:
 
-*'children' - allows to add children elements (React.Element)
-*'className' - apply a className to the control (string)
-*'direction' - select animation type (string)
-*'duration' - set duration of animation (number)
-*'images' - array of images to set on the background (array of strings)
-*'height' - height of the card (string)
-*'width' - width of the card (string)
+- `children` - allows to add children elements (React.Element)
+- `className` - apply a className to the control (string)
+- `direction` - select animation type (string)
+- `duration` - set duration of animation (number)
+- `images` - array of images to set on the background (array of strings)
+- `height` - height of the card (string)
+- `width` - width of the card (string)
 
-Special props for 'TinderLikeCard':
+Special props for `TinderLikeCard`:
 
-*'colors' - array of colors to set on the background (array of strings)
+- `colors` - array of colors to set on the background (array of strings)
 
-Special props for 'ToggleCard':
+Special props for `ToggleCard`:
 
-*'colors' - array of colors to set on the background (array of strings)
-*'onMouseEnter' - occurs when the mouse pointer is moved onto an element
-*'onMouseLeave' - occurs when the mouse pointer is moved out of an element
-*'onClick' - occurs when the user clicks on an element
-*'isOpen' - allows you to animate component (boolean)
+- `colors` - array of colors to set on the background (array of strings)
+- `onMouseEnter` - occurs when the mouse pointer is moved onto an element
+- `onMouseLeave` - occurs when the mouse pointer is moved out of an element
+- `onClick` - occurs when the user clicks on an element
+- `isOpen` - allows you to animate component (boolean)
 
-Special props for 'StackCard':
-*'color' - color to set on the background (string)
-*'onMouseEnter' - occurs when the mouse pointer is moved onto an element
-*'onMouseLeave' - occurs when the mouse pointer is moved out of an element
-*'onClick' - occurs when the user clicks on an element
+Special props for `StackCard`:
+- `color` - color to set on the background (string)
+- `onMouseEnter` - occurs when the mouse pointer is moved onto an element
+- `onMouseLeave` - occurs when the mouse pointer is moved out of an element
+- `onClick` - occurs when the user clicks on an element
 
+## Methods
+- `swipe()` - swipe method for TinderLikeCard
 
 ## License
-[MIT](https://choosealicense.com/licenses/mit/)
+MIT Licensed. Copyright (c) 2019 yoloten
