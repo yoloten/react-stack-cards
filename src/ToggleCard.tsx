@@ -420,7 +420,7 @@ const StyledUl = styled.div`
   position: relative;
 `
 
-class ToggleCard extends React.Component<Toggle.Props, Toggle.State> {
+export class ToggleCard extends React.Component<Toggle.Props, Toggle.State> {
 
     public state: Toggle.State = {
         stateOfContent: "",
@@ -469,5 +469,3 @@ class ToggleCard extends React.Component<Toggle.Props, Toggle.State> {
         )
     }
 }
-
-export default ToggleCard

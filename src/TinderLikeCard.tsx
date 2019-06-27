@@ -267,8 +267,8 @@ const StyledLi = styled(Li)`
   left: 0;
   top: 0;
 `
-
-class TinderLikeCard extends React.Component<TinderLike.Props, TinderLike.State> {
+ 
+export class TinderLikeCard extends React.Component<TinderLike.Props, TinderLike.State> {
 
     public state: TinderLike.State = {
         stateOfContent: "",
@@ -366,5 +366,3 @@ class TinderLikeCard extends React.Component<TinderLike.Props, TinderLike.State>
         )
     }
 }
-
-export default TinderLikeCard
