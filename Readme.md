@@ -107,7 +107,7 @@ Common props for all three components:
 - `height` - height of the card (string)
 - `width` - width of the card (string)
 
-`children` prop can be array of the elements in `TinderLikeCard` and `ToggleCard` or single element. `StackCard` only supports one element.
+`children` prop can be an array of the elements in `TinderLikeCard` and `ToggleCard` or single element. `StackCard` only supports one element.
 
 Special props for `TinderLikeCard`:
 
