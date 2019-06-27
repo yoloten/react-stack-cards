@@ -32,7 +32,7 @@ yarn add react-stack-cards
 ## Simple usage
 
 ```javascript
-import TinderLikeCard from 'react-card-effects'
+import {ToggleCard, TinderLikeCard, StackCard} from 'react-card-effects'
 
 class Example extends React.Component {
   constructor(props){
