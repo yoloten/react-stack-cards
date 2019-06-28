@@ -69,6 +69,8 @@ class Example extends React.Component {
         >
         { numbers.map( i => <div>{i}</div> )}
         </ToggleCard>
+        <button onClick={this.onToggle.bind(this)}>Toggle</button>
+
         <TinderLikeCard
             images={arr}
             width="350"
@@ -80,6 +82,8 @@ class Example extends React.Component {
         >
             { numbers.map( i => <div>{i}</div> )}
         </TinderLikeCards>
+        <button onClick={this.onTinderSwipe.bind(this)}>Swipe</button>
+
         <StackCard
           images={arr}
           color={"#f95c5c"}
@@ -88,7 +92,7 @@ class Example extends React.Component {
           direction={this.state.directionStack}
           onClick={()=> alert("Hello")}
         >
-          <div>{i}</div>
+          <div>i</div>
         </StackCard>
     );
   }

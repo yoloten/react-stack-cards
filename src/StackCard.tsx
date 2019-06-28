@@ -222,3 +222,4 @@ export class StackCard extends React.Component <Stack.Props, {}> {
     }
 }
 
+export default StackCard

@@ -469,3 +469,5 @@ export class ToggleCard extends React.Component<Toggle.Props, Toggle.State> {
         )
     }
 }
+
+export default ToggleCard

@@ -366,3 +366,5 @@ export class TinderLikeCard extends React.Component<TinderLike.Props, TinderLike
         )
     }
 }
+
+export default TinderLikeCard
