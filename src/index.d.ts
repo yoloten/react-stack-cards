@@ -1,4 +1,4 @@
-declare module "@types/react-stack-cards" { 
+declare module "react-stack-cards" { 
     export interface Stack {
         children: React.ReactNode
         onMouseEnter: () => void
