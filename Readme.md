@@ -9,6 +9,7 @@ Feautures:
 - Swipe animations allow you to work with big amount of images and colors
 - Flexible settings like adding elements into the cards, change duration of animation and etc.
 - Effects actually look awesome :blush:
+- Supports Typescript
 
 Available components:
 
@@ -57,6 +58,7 @@ class Example extends React.Component {
     const arr = [first, second, third, fourth]
     const numbers = [0, 1, 2, 3]
     return (
+      <div>
         <ToggleCard 
           images={arr}
           width="350"
@@ -94,6 +96,7 @@ class Example extends React.Component {
         >
           <div>i</div>
         </StackCard>
+      </div>
     );
   }
 }

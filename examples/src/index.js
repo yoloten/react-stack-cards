@@ -65,7 +65,7 @@ class App extends Component {
     super(props)
     this.state = {
       directionTinder: "swipeCornerDownRight",
-      directionToggle: "sideSlide",
+      directionToggle: "previewGrid",
       directionStack: "topRight",
       isOpen: false
     }

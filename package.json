@@ -1,6 +1,6 @@
 {
   "name": "react-stack-cards",
-  "version": "1.0.55",
+  "version": "1.0.6",
   "description": "",
   "main": "./lib/index.js",
   "scripts": {

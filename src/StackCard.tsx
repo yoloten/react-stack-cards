@@ -20,10 +20,10 @@ namespace Stack {
         className: string
         direction: string
         duration: number
-        images: string[]
-        height: number
+        images: string[] 
+        height: string
         color: string
-        width: number
+        width: string
     }
 }
 
