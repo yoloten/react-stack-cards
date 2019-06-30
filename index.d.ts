@@ -1,42 +1,42 @@
 declare module "react-stack-cards" { 
     export interface Stack {
-        children: React.ReactNode
-        onMouseEnter: () => void
-        onMouseLeave: () => void
+        children?: React.ReactNode
+        onMouseEnter?: () => void
+        onMouseLeave?: () => void
         [propName: string]: any
-        onClick: () => void
-        className: string
+        onClick?: () => void
+        className?: string
         direction: string
-        duration: number
-        images: string[]
+        duration?: number
+        images?: string[]
         height: number
-        color: string
+        color?: string
         width: number
     }
 
     export interface TinderLike {
-        children: React.ReactNode
+        children?: React.ReactNode
         [propName: string]: any
-        className: string
+        className?: string
         direction: string
-        duration: number
-        colors: string[]
-        images: string[]
+        duration?: number
+        colors?: string[]
+        images?: string[]
         height: string
         width: string
     }
 
     export interface Toggle {
-        children: React.ReactNode
-        onMouseEnter: () => void
-        onMouseLeave: () => void
+        children?: React.ReactNode
+        onMouseEnter?: () => void
+        onMouseLeave?: () => void
         [propName: string]: any
-        onClick: () => void
-        className: string
+        onClick?: () => void
+        className?: string
         direction: string
-        duration: number 
-        colors: string[]
-        images: string[]
+        duration?: number 
+        colors?: string[]
+        images?: string[]
         height: string
         width: string
     }
