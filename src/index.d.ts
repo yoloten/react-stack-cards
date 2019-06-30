@@ -1,4 +1,4 @@
-declare module "react-stack-cards" {
+declare module "@types/react-stack-cards" { 
     export interface Stack {
         children: React.ReactNode
         onMouseEnter: () => void
@@ -34,7 +34,7 @@ declare module "react-stack-cards" {
         onClick: () => void
         className: string
         direction: string
-        duration: number
+        duration: number 
         colors: string[]
         images: string[]
         height: string
