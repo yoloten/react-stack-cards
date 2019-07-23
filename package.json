@@ -1,6 +1,6 @@
 {
   "name": "react-stack-cards",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "",
   "main": "./lib/index.js",
   "scripts": {
@@ -12,6 +12,15 @@
     "type": "git",
     "url": "https://github.com/yoloten/react-stack-cards"
   },
+  "keywords": [
+    "stack",
+    "card",
+    "react",
+    "react-component",
+    "effect",
+    "animation",
+    "ui"
+  ],
   "author": "Rustam Sahatov",
   "license": "ISC",
   "dependencies": {
