@@ -19,7 +19,7 @@ Available components:
 
 ## Installation
 
-You can install react-card-effects from npm
+You can install react-stack-cards from npm
 
 ```
 npm i -S react-stack-cards
@@ -33,7 +33,7 @@ yarn add react-stack-cards
 ## Simple usage
 
 ```javascript
-import { ToggleCard, TinderLikeCard, StackCard } from 'react-card-effects'
+import { ToggleCard, TinderLikeCard, StackCard } from 'react-stack-cards'
 
 class Example extends React.Component {
   constructor(props){
