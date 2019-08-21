@@ -55,7 +55,7 @@ class Example extends React.Component {
   }
 
   render() {
-    const arr = [first, second, third, fourth]
+    const arr = ["first", "second", "third", "fourth"]
     const numbers = [0, 1, 2, 3]
     return (
       <div>
@@ -83,7 +83,7 @@ class Example extends React.Component {
             className="tinder"
         >
             { numbers.map( i => <div>{i}</div> )}
-        </TinderLikeCards>
+        </TinderLikeCard>
         <button onClick={this.onTinderSwipe.bind(this)}>Swipe</button>
 
         <StackCard
