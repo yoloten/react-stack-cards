@@ -159,7 +159,6 @@ class App extends Component {
                   direction={this.state.directionToggle}
                   className="toggle"
                   isOpen={this.state.isOpen}
-                  onClick={()=> alert("Hello")}
                 />
                 <input type="checkbox" onClick={this.onToggle.bind(this)} id="cb" className="tgl tgl-light"/>
                 <label htmlFor="cb" className="tgl-btn"></label>
@@ -200,7 +199,6 @@ class App extends Component {
                   width="350"
                   height="240"
                   direction={this.state.directionStack}
-                  onClick={()=> alert("Hello")}
                 />
               </div>
             </div>

@@ -64,21 +64,21 @@ const Li = posed.div({
     init: {
         transition: ({ duration }: TinderLike.Props) => ({duration}),
         scale: ({ order }: TinderLike.Props): number => {
-
             return objectSwitch(order, {
                 0: 1,
                 1: 0.95,
                 2: 0.9,
             })
         },
-        y: ({ order }: TinderLike.Props): number => {
-
+        y: ({ order, height }: TinderLike.Props): number => {
+            const parsedHeight = Number.parseInt(height) / 10
+            
             return objectSwitch(order, {
-                0: 60,
-                1: 40,
-                2: 20,
-                3: 20,
-                4: 10,
+                0: parsedHeight * 2,
+                1: parsedHeight,
+                2: 0,
+                3: 0,
+                4: 0,
             })
         },
         opacity: 1,
@@ -220,21 +220,27 @@ const Li = posed.div({
         transition: middleTransition,
         opacity: 1,
         scale: 1,
-        y: 60,
+        y: ({ height }: TinderLike.Props): number => {
+            const parsedHeight = Number.parseInt(height) / 10
+            return parsedHeight * 2
+        },
         x: 0,
     },
     secondMiddle: {
         transition: middleTransition,
         scale: 0.95,
         opacity: 1,
-        y: 40,
+        y: ({ height }: TinderLike.Props): number => {
+            const parsedHeight = Number.parseInt(height) / 10
+            return parsedHeight 
+        },
         x: 0,
     },
     in: {
         transition: cornersTransition,
         scale: 0.90,
         opacity: 1,
-        y: 20,
+        y: 0,
         x: 0,
     },
 })
